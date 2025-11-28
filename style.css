@@ -2380,41 +2380,41 @@ body:not([data-page="cash"]) .seller:hover {
     .topbar,
     .branding {
         transform: none !important;
-        /* ------------------------------------------------ */
-        /* 📱 FIX TOP HEADER (Sign in / Backup buttons)     */
-        /* ------------------------------------------------ */
+    }
+}
 
-        @media (max-width: 768px) {
+/* ------------------------------------------------ */
+/* 📱 FIX TOP HEADER (Sign in / Backup buttons)     */
+/* ------------------------------------------------ */
 
-            /* shrink the entire top header */
-            .topbar {
-                transform: scale(0.75) !important;
-                transform-origin: top center !important;
-                margin-bottom: 0 !important;
-                padding-bottom: 0 !important;
-            }
+@media (max-width: 768px) {
 
-            /* shrink sign in / backup buttons */
-            .topbar button,
-            .topbar .btn,
-            .topbar .auth-btn {
-                font-size: 12px !important;
-                padding: 6px 10px !important;
-                height: auto !important;
-            }
+    /* shrink the entire top header */
+    .topbar {
+        transform: scale(0.75) !important;
+        transform-origin: top center !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
 
-            /* shrink the icons inside those buttons */
-            .topbar img,
-            .topbar svg {
-                width: 20px !important;
-                height: 20px !important;
-            }
+    /* shrink sign in / backup buttons */
+    .topbar button,
+    .topbar .btn,
+    .topbar .auth-btn {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+        height: auto !important;
+    }
 
-            /* prevent giant spacing */
-            .branding {
-                margin-bottom: 5px !important;
-            }
-        }
+    /* shrink the icons inside those buttons */
+    .topbar img,
+    .topbar svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
 
+    /* prevent giant spacing */
+    .branding {
+        margin-bottom: 5px !important;
     }
 }
