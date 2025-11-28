@@ -2240,3 +2240,95 @@ body:not([data-page="cash"]) .seller:hover {
 .summary-tab {
     z-index: 50;
 }
+
+/* =========================================
+   MOBILE RESPONSIVE FIXES (iPhone friendly)
+   ========================================= */
+@media (max-width: 768px) {
+
+    /* Top navigation buttons */
+    .site-nav {
+        display: flex;
+        justify-content: space-around;
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .site-link {
+        font-size: 14px !important;
+        padding: 6px 12px !important;
+        border-radius: 12px !important;
+        flex: 1;
+        text-align: center;
+    }
+
+    /* Reduce title size */
+    .topbar h1 {
+        font-size: 22px !important;
+        text-align: center;
+    }
+
+    /* Add area inputs stack with proper spacing */
+    .add-area {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .add-area input,
+    .add-area select {
+        width: 100% !important;
+        font-size: 16px !important;
+        padding: 10px !important;
+    }
+
+    /* Add Bought Card button */
+    #addBoughtBtn {
+        width: 100% !important;
+        font-size: 16px !important;
+        padding: 14px !important;
+    }
+
+    /* File input container */
+    .add-area input[type="file"] {
+        font-size: 14px !important;
+    }
+
+    /* Cash floating button */
+    .cash-fab {
+        position: fixed;
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 26px !important;
+        font-size: 18px !important;
+        z-index: 99999;
+    }
+
+    /* Cards stack nicely */
+    .seller-card,
+    .card-item {
+        width: 100% !important;
+        margin: 0 auto 15px auto;
+    }
+
+    .card-img img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Summary tab reposition */
+    #summaryTab {
+        top: 80px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    /* Summary panel full width */
+    #summaryPanel {
+        width: 90% !important;
+        right: -100%;
+    }
+}
