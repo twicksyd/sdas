@@ -2241,76 +2241,74 @@ body:not([data-page="cash"]) .seller:hover {
     z-index: 50;
 }
 
-/* =========================================
-   MOBILE RESPONSIVE FIXES (iPhone friendly)
-   ========================================= */
+/* -------------------------------- */
+/* 📱 FINAL MOBILE LAYOUT FIX (iPhone) */
+/* -------------------------------- */
+
 @media (max-width: 768px) {
 
-    /* Top navigation buttons */
+    /* Fix entire top nav */
     .site-nav {
-        display: flex;
-        justify-content: space-around;
-        padding: 6px;
-        gap: 6px;
+        transform: scale(0.75) !important;
+        margin-top: 10px !important;
+        gap: 4px !important;
     }
 
     .site-link {
+        padding: 8px 14px !important;
         font-size: 14px !important;
-        padding: 6px 12px !important;
-        border-radius: 12px !important;
-        flex: 1;
-        text-align: center;
     }
 
-    /* Reduce title size */
-    .topbar h1 {
-        font-size: 22px !important;
-        text-align: center;
+    /* Fix title */
+    h1 {
+        font-size: 24px !important;
+        text-align: center !important;
+        margin-top: 10px !important;
     }
 
-    /* Add area inputs stack with proper spacing */
+    /* Reduce form spacing */
     .add-area {
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        width: 92% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
+        gap: 8px !important;
     }
 
-    .add-area input,
-    .add-area select {
-        width: 100% !important;
+    /* All inputs smaller */
+    input,
+    select {
         font-size: 16px !important;
         padding: 10px !important;
     }
 
-    /* Add Bought Card button */
-    #addBoughtBtn {
-        width: 100% !important;
+    /* Buttons smaller */
+    .btn {
         font-size: 16px !important;
-        padding: 14px !important;
+        padding: 12px !important;
     }
 
-    /* File input container */
-    .add-area input[type="file"] {
-        font-size: 14px !important;
-    }
-
-    /* Cash floating button */
+    /* Cash button */
     .cash-fab {
-        position: fixed;
-        bottom: 90px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 12px 26px !important;
+        transform: translateX(-50%) !important;
         font-size: 18px !important;
-        z-index: 99999;
+        bottom: 50px !important;
+        padding: 10px 26px !important;
+        border-radius: 40px !important;
     }
 
-    /* Cards stack nicely */
+    /* Summary tab */
+    #summaryTab {
+        top: 120px !important;
+        left: 8px !important;
+        font-size: 13px !important;
+        padding: 6px 10px !important;
+    }
+
+    /* Cards fill screen */
     .seller-card,
     .card-item {
         width: 100% !important;
-        margin: 0 auto 15px auto;
+        margin: 10px auto !important;
     }
 
     .card-img img {
@@ -2318,17 +2316,9 @@ body:not([data-page="cash"]) .seller:hover {
         height: auto !important;
     }
 
-    /* Summary tab reposition */
-    #summaryTab {
-        top: 80px;
-        left: 10px;
-        padding: 6px 12px;
-        font-size: 13px;
-    }
-
-    /* Summary panel full width */
-    #summaryPanel {
-        width: 90% !important;
-        right: -100%;
+    /* Prevent horizontal scrolling */
+    body,
+    html {
+        overflow-x: hidden !important;
     }
 }
