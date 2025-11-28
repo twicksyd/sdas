@@ -2511,3 +2511,47 @@ body:not([data-page="cash"]) .seller:hover {
         }
     }
 }
+
+/* MOBILE FIX: Navbar Cleanup */
+@media (max-width: 768px) {
+
+    /* Make navbar vertical and centered */
+    .site-nav {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        position: relative !important;
+        margin-top: 10px !important;
+        transform: none !important;
+        width: 100% !important;
+    }
+
+    .site-link {
+        font-size: 13px !important;
+        padding: 8px 16px !important;
+        border-radius: 12px !important;
+        width: auto !important;
+        white-space: nowrap !important;
+    }
+
+    /* Fix top header spacing */
+    .branding {
+        text-align: center !important;
+        margin-top: 40px !important;
+    }
+
+    /* Move sign-in/backup buttons below navbar */
+    .topbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-right {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+        justify-content: center;
+    }
+}
