@@ -2241,70 +2241,78 @@ body:not([data-page="cash"]) .seller:hover {
     z-index: 50;
 }
 
-/* -------------------------------- */
-/* 📱 FINAL MOBILE LAYOUT FIX (iPhone) */
-/* -------------------------------- */
+/* ------------------------------------------------ */
+/* 📱 TRUE MOBILE FIX (works on all iPhones)        */
+/* ------------------------------------------------ */
 
 @media (max-width: 768px) {
 
-    /* Fix entire top nav */
-    .site-nav {
-        transform: scale(0.75) !important;
+    /* 🔹 Remove desktop scaling/transform issues */
+    .topbar,
+    .site-nav,
+    .branding,
+    h1 {
+        transform: none !important;
+    }
+
+    /* 🔹 Make header smaller and tight */
+    .branding {
         margin-top: 10px !important;
+        text-align: center !important;
+    }
+
+    h1 {
+        font-size: 22px !important;
+        line-height: 26px !important;
+        margin: 5px 0 !important;
+    }
+
+    /* 🔹 Navigation tabs */
+    .site-nav {
+        display: flex !important;
+        justify-content: center !important;
         gap: 4px !important;
+        padding: 0 !important;
+        margin: 0 auto 10px auto !important;
+        width: 100% !important;
+        transform: scale(0.8) !important;
     }
 
     .site-link {
-        padding: 8px 14px !important;
         font-size: 14px !important;
+        padding: 6px 12px !important;
     }
 
-    /* Fix title */
-    h1 {
-        font-size: 24px !important;
-        text-align: center !important;
-        margin-top: 10px !important;
-    }
-
-    /* Reduce form spacing */
+    /* 🔹 Reduce form area spacing */
     .add-area {
         width: 92% !important;
         margin: 0 auto !important;
+        gap: 6px !important;
         padding: 0 !important;
-        gap: 8px !important;
     }
 
-    /* All inputs smaller */
     input,
     select {
-        font-size: 16px !important;
+        font-size: 15px !important;
         padding: 10px !important;
     }
 
-    /* Buttons smaller */
+    /* 🔹 Main button size */
     .btn {
-        font-size: 16px !important;
+        font-size: 15px !important;
         padding: 12px !important;
     }
 
-    /* Cash button */
+    /* 🔹 Cash button */
     .cash-fab {
         transform: translateX(-50%) !important;
-        font-size: 18px !important;
-        bottom: 50px !important;
-        padding: 10px 26px !important;
-        border-radius: 40px !important;
+        bottom: 40px !important;
+        font-size: 16px !important;
+        padding: 10px 22px !important;
+        border-radius: 30px !important;
     }
 
-    /* Summary tab */
-    #summaryTab {
-        top: 120px !important;
-        left: 8px !important;
-        font-size: 13px !important;
-        padding: 6px 10px !important;
-    }
-
-    /* Cards fill screen */
+    /* 🔹 Card layout */
     .seller-card,
     .card-item {
         width: 100% !important;
@@ -2312,11 +2320,19 @@ body:not([data-page="cash"]) .seller:hover {
     }
 
     .card-img img {
-        max-width: 100% !important;
+        width: 100% !important;
         height: auto !important;
     }
 
-    /* Prevent horizontal scrolling */
+    /* 🔹 Summary tab */
+    #summaryTab {
+        top: 90px !important;
+        left: 10px !important;
+        padding: 5px 10px !important;
+        font-size: 12px !important;
+    }
+
+    /* 🔹 Prevent horizontal scrolling */
     body,
     html {
         overflow-x: hidden !important;
