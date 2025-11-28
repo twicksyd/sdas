@@ -2416,5 +2416,38 @@ body:not([data-page="cash"]) .seller:hover {
     /* prevent giant spacing */
     .branding {
         margin-bottom: 5px !important;
+        /* ------------------------------------------------ */
+        /* 📱 Fix Mobile Title Size & Spacing               */
+        /* ------------------------------------------------ */
+
+        @media (max-width: 768px) {
+
+            /* shrink the ".branding" area */
+            .branding {
+                transform: scale(0.65) !important;
+                transform-origin: top left !important;
+                margin-bottom: -10px !important;
+            }
+
+            /* shrink just the text sizes */
+            .branding .logo-gradient {
+                font-size: 24px !important;
+                line-height: 24px !important;
+            }
+
+            .branding h1 {
+                font-size: 28px !important;
+                line-height: 30px !important;
+                margin-top: 0 !important;
+                margin-bottom: 5px !important;
+            }
+
+            /* prevent Sign in / Backup from overlapping */
+            .topbar {
+                display: flex;
+                flex-direction: column;
+                gap: 4px !important;
+            }
+        }
     }
 }
