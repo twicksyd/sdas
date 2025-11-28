@@ -2420,33 +2420,93 @@ body:not([data-page="cash"]) .seller:hover {
         /* 📱 Fix Mobile Title Size & Spacing               */
         /* ------------------------------------------------ */
 
+        /* ================================
+   HARD MOBILE LAYOUT OVERRIDES
+   ================================ */
         @media (max-width: 768px) {
 
-            /* shrink the ".branding" area */
-            .branding {
-                transform: scale(0.65) !important;
-                transform-origin: top left !important;
-                margin-bottom: -10px !important;
+            /* Base font size smaller on mobile */
+            html,
+            body {
+                font-size: 14px;
             }
 
-            /* shrink just the text sizes */
-            .branding .logo-gradient {
-                font-size: 24px !important;
-                line-height: 24px !important;
+            /* Main app container */
+            .app,
+            main {
+                max-width: 100%;
+                padding: 16px;
+                margin: 0 auto;
             }
 
-            .branding h1 {
-                font-size: 28px !important;
-                line-height: 30px !important;
-                margin-top: 0 !important;
-                margin-bottom: 5px !important;
+            /* TITLE: "Twicks Inventory (Bought)" */
+            h1 {
+                font-size: 26px !important;
+                line-height: 1.1 !important;
+                margin: 0 0 8px 0 !important;
             }
 
-            /* prevent Sign in / Backup from overlapping */
-            .topbar {
+            /* Any secondary heading */
+            h2 {
+                font-size: 20px !important;
+                line-height: 1.1 !important;
+                margin-bottom: 6px !important;
+            }
+
+            /* Top tabs: Inventory / For Sale / Sold */
+            .nav-tabs,
+            .top-tabs,
+            .tab-row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nav-tabs button,
+            .top-tabs button,
+            .tab-row button {
+                font-size: 14px !important;
+                padding: 8px 14px !important;
+            }
+
+            /* Form layout → single column */
+            .form-row,
+            .card-row,
+            .row {
                 display: flex;
                 flex-direction: column;
-                gap: 4px !important;
+                gap: 8px;
+            }
+
+            /* Inputs & selects */
+            input,
+            select,
+            textarea {
+                width: 100%;
+                font-size: 14px !important;
+                padding: 10px 12px !important;
+            }
+
+            /* General buttons */
+            .btn,
+            .primary-btn,
+            button {
+                font-size: 14px !important;
+                padding: 10px 16px !important;
+            }
+
+            /* "Add Bought Card" */
+            .add-btn,
+            .add-card-btn {
+                width: 100% !important;
+            }
+
+            /* Cash bubble at the bottom */
+            .cash-fab {
+                width: 170px !important;
+                height: 60px !important;
+                font-size: 18px !important;
             }
         }
     }
