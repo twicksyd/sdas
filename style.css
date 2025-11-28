@@ -2338,3 +2338,47 @@ body:not([data-page="cash"]) .seller:hover {
         overflow-x: hidden !important;
     }
 }
+
+/* ------------------------------------------------ */
+/* 📱 FIX NAVBAR SIZE ON MOBILE                    */
+/* ------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    /* FULL NAVBAR CONTAINER */
+    nav.site-nav {
+        position: relative !important;
+        top: 0 !important;
+        left: 50% !important;
+        transform: translateX(-50%) scale(0.65) !important;
+        width: max-content !important;
+        margin-top: 5px !important;
+        z-index: 9999 !important;
+    }
+
+    /* NAV BUTTONS */
+    nav.site-nav .site-link {
+        padding: 6px 10px !important;
+        font-size: 13px !important;
+        border-radius: 8px !important;
+    }
+
+    /* TITLE */
+    h1 {
+        font-size: 20px !important;
+        text-align: center !important;
+        margin-top: 10px !important;
+    }
+
+    /* LOGO (Twicks) */
+    .logo-gradient {
+        font-size: 26px !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* REMOVE DESKTOP TRANSFORM */
+    .topbar,
+    .branding {
+        transform: none !important;
+    }
+}
