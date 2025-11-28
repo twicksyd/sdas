@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Twicks — For Sale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <nav class="site-nav" role="navigation" aria-label="Primary">
+        <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
+        <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
+        <a href="sold.html" class="site-link" data-page="sold">Sold</a>
+    </nav>
+
+    <a class="cash-fab" href="cash.html" title="Go to Cash On Hand">Cash</a>
+
+    <div class="summary-tab" id="summaryTabFS">📈 Summary</div>
+    <aside class="summary-panel" id="summaryPanelFS" aria-live="polite">
+        <button class="close-summary" id="closeSummaryFS" aria-label="Close summary">✕</button>
+        <div class="branding-sidebar">
+            <div class="logo-gradient">Twicks</div>
+        </div>
+        <h3>Overview</h3>
+        <div class="summary-stats">
+            <div class="stat">
+                <div class="label">Listings</div>
+                <div id="sumForSale" class="value">0</div>
+            </div>
+            <div class="stat">
+                <div class="label">Total Value</div>
+                <div id="sumForSaleValue" class="value">₱0.00</div>
+            </div>
+        </div>
+        <hr>
+        <h4>Buyers (quick)</h4>
+        <div id="summarySellersFS" class="summary-sellers"></div>
+    </aside>
+
+    <main class="app">
+        <header class="topbar">
+            <div class="branding">
+                <div class="logo-gradient">Twicks</div>
+                <h1>For Sale</h1>
+            </div>
+        </header>
+
+        <!-- Add new listing -->
+        <section class="add-area">
+            <input id="f_price" type="number" step="0.01" placeholder="Price ₱" inputmode="decimal" />
+            <input id="f_image" type="file" accept="image/*" />
+            <button id="addForSaleBtn" type="button" class="btn primary">Add Listing</button>
+        </section>
+
+        <!-- Persistent Buyer picker (used when marking items as Sold) -->
+        <section class="add-area" style="margin-top:-8px;">
+            <select id="fs_buyer_select" class="seller-select" aria-label="Select buyer"></select>
+            <button id="manageBuyersBtn" type="button" class="btn secondary">⚙ Manage Buyers</button>
+            <div class="muted" style="font-size:12px;">
+                Pick a buyer once — I’ll remember it for every “Sold” until you change it.
+            </div>
+        </section>
+
+        <!-- Optional info label -->
+        <div id="fsInfoBar" style="margin:4px 6px 10px 6px;opacity:.9;"></div>
+
+        <!-- Tabs auto-injected above this grid by JS -->
+        <section id="grid" class="grid-four"></section>
+
+        <!-- Shared modal -->
+        <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="image-modal-bg" id="imageModalBgFS"></div>
+            <div class="image-modal-content">
+                <button id="closeImageModal" class="modal-close" aria-label="Close image">✕</button>
+                <img id="modalImage" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="twicks.js" defer></script>
+</body>
+
+</html>

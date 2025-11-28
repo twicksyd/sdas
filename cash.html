@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Twicks — Cash</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <nav class="site-nav" role="navigation" aria-label="Primary">
+        <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
+        <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
+        <a href="sold.html" class="site-link" data-page="sold">Sold</a>
+    </nav>
+
+    <!-- No Cash FAB here since we're already on the cash page -->
+
+    <main class="app cash-page">
+        <header class="topbar">
+            <div class="branding">
+                <div class="logo-gradient">Twicks</div>
+                <h1>Cash On Hand</h1>
+            </div>
+        </header>
+
+        <section id="cashApp" class="cash-layout">
+            <!-- LEFT -->
+            <div class="cash-left">
+                <div class="balance-row">
+                    <div class="balance-card">
+                        <div class="balance-label">GCash</div>
+                        <div id="sumGCash" class="balance-value">₱0.00</div>
+                    </div>
+                    <div class="balance-card">
+                        <div class="balance-label">SeaBank</div>
+                        <div id="sumSea" class="balance-value">₱0.00</div>
+                    </div>
+                    <div class="balance-card">
+                        <div class="balance-label">Cash</div>
+                        <div id="sumCash" class="balance-value">₱0.00</div>
+                    </div>
+                    <div class="balance-card total">
+                        <div class="balance-label">On Hand Total</div>
+                        <div id="sumTotalCash" class="balance-value">₱0.00</div>
+                    </div>
+                </div>
+
+                <!-- Add / Deduct -->
+                <div class="addline" style="margin-top:12px;">
+                    <select id="c_source" aria-label="Source"></select>
+                    <input id="c_amount" type="number" step="0.01" placeholder="Amount ₱" inputmode="decimal" />
+                    <input id="c_note" type="text" placeholder="Note (optional)" />
+                    <button id="addCashBtn" class="btn primary" type="button">Add</button>
+                    <button id="deductCashBtn" class="btn secondary" type="button">Deduct</button>
+                </div>
+
+                <!-- Transactions -->
+                <div class="cash-list" id="cashList" aria-live="polite" style="margin-top:12px;"></div>
+
+                <!-- Grand total -->
+                <div class="grand-total cash-panel" style="margin-top:12px;">
+                    <div class="title">Grand Total</div>
+                    <div id="grandTotalCash" class="grand-value">₱0.00</div>
+                    <div id="grandBreakdown" class="grand-meta">On-hand ₱0.00 + Paid revenue ₱0.00</div>
+                </div>
+            </div>
+
+            <!-- RIGHT: KPIs -->
+            <div class="cash-right">
+                <div class="kpi primary">
+                    <div class="kpi-title">Revenue (Paid)</div>
+                    <div id="revPaidValue" class="kpi-value">₱0.00</div>
+                    <div class="kpi-sub"><span id="revPaidCount">0</span> item(s) paid</div>
+                </div>
+                <div class="kpi warn">
+                    <div class="kpi-title">Revenue (Pending)</div>
+                    <div id="revPendValue" class="kpi-value small">₱0.00</div>
+                    <div class="kpi-sub"><span id="revPendCount">0</span> item(s) pending</div>
+                </div>
+                <div class="kpi">
+                    <div class="kpi-title">Calculated Pending Value</div>
+                    <div id="revAllValue" class="kpi-value small">₱0.00</div>
+                    <div class="kpi-sub">For reference only</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shared modal (kept for consistency, not commonly used on cash page) -->
+        <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="image-modal-bg" id="imageModalBgCash"></div>
+            <div class="image-modal-content">
+                <button id="closeImageModal" class="modal-close" aria-label="Close image">✕</button>
+                <img id="modalImage" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="twicks.js" defer></script>
+</body>
+
+</html>

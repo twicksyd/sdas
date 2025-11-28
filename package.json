@@ -1,0 +1,18 @@
+{
+    "name": "twicks",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "build": "echo \"No build step\""
+    },
+    "dependencies": {
+        "pg": "^8.16.3",
+        "serverless-http": "^4.0.0"
+    },
+    "description": "",
+    "main": "twicks.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs"
+}

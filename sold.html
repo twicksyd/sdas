@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Twicks — Sold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <nav class="site-nav" role="navigation" aria-label="Primary">
+        <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
+        <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
+        <a href="sold.html" class="site-link" data-page="sold">Sold</a>
+    </nav>
+
+    <a class="cash-fab" href="cash.html" title="Go to Cash On Hand">Cash</a>
+
+    <div class="summary-tab" id="summaryTabSold">📈 Summary</div>
+    <aside class="summary-panel" id="summaryPanelSold" aria-live="polite">
+        <button class="close-summary" id="closeSummarySold" aria-label="Close summary">✕</button>
+        <div class="branding-sidebar">
+            <div class="logo-gradient">Twicks</div>
+        </div>
+        <h3>Overview</h3>
+        <div class="summary-stats">
+            <div class="stat">
+                <div class="label">Total Sold</div>
+                <div id="sumSoldCount" class="value">0</div>
+            </div>
+            <div class="stat">
+                <div class="label">Total Revenue (Paid)</div>
+                <div id="sumSoldValue" class="value">₱0.00</div>
+            </div>
+            <div class="stat">
+                <div class="label">Calculated Revenue (Pending)</div>
+                <div id="sumSoldPendingValue" class="value value-red">₱0.00</div>
+            </div>
+            <div class="stat">
+                <div class="label">Paid Items</div>
+                <div id="sumSoldPaidCount" class="value value-green">0</div>
+            </div>
+            <div class="stat">
+                <div class="label">Pending Items</div>
+                <div id="sumSoldPendingCount" class="value value-red">0</div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="app">
+        <header class="topbar">
+            <div class="branding">
+                <div class="logo-gradient">Twicks</div>
+                <h1>Sold Items</h1>
+                <label class="greet-picker" style="margin-left:12px; display:inline-flex; gap:6px; align-items:center;">
+                    Greeting:
+                    <select id="greetSelect" aria-label="Default greeting">
+                        <option value="morning">morning</option>
+                        <option value="afternoon">afternoon</option>
+                        <option value="evening">evening</option>
+                    </select>
+                </label>
+            </div>
+            <div class="top-actions"></div>
+        </header>
+
+        <section id="soldContainer" class="sold-container"></section>
+
+        <!-- Shared modal -->
+        <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="image-modal-bg" id="imageModalBgSold"></div>
+            <div class="image-modal-content">
+                <button id="closeImageModal" class="modal-close" aria-label="Close image">✕</button>
+                <img id="modalImage" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="twicks.js" defer></script>
+</body>
+
+</html>

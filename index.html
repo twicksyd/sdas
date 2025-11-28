@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Twicks — Inventory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Identity (Drive backup/restore) -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="twicks.js" defer></script>
+</head>
+
+<body>
+    <!-- Fixed top-right site nav -->
+    <nav class="site-nav" role="navigation" aria-label="Primary">
+        <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
+        <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
+        <a href="sold.html" class="site-link" data-page="sold">Sold</a>
+    </nav>
+
+    <!-- Center RGB Cash button -->
+    <a class="cash-fab" href="cash.html" title="Go to Cash On Hand">Cash</a>
+
+    <!-- Sidebar summary -->
+    <div class="summary-tab" id="summaryTab">📈 Summary</div>
+    <aside class="summary-panel" id="summaryPanel" aria-live="polite">
+        <button class="close-summary" id="closeSummary" aria-label="Close summary">✕</button>
+        <div class="branding-sidebar">
+            <div class="logo-gradient">Twicks</div>
+        </div>
+        <h3>Overview</h3>
+        <div class="summary-stats">
+            <div class="stat">
+                <div class="label">Total Cards</div>
+                <div id="sumCards" class="value">0</div>
+            </div>
+            <div class="stat">
+                <div class="label">Total Spent</div>
+                <div id="sumSpent" class="value">₱0.00</div>
+            </div>
+            <div class="stat">
+                <div class="label">Total Worth</div>
+                <div id="sumWorth" class="value">₱0.00</div>
+            </div>
+            <div class="stat">
+                <div class="label">Total Profit</div>
+                <div id="sumProfit" class="value">₱0.00</div>
+            </div>
+        </div>
+        <hr>
+        <h4>Per Seller (quick)</h4>
+        <div id="summarySellers" class="summary-sellers"></div>
+        <hr>
+        <button id="resetAll" class="btn reset-btn">⚙️ Reset All Data</button>
+    </aside>
+
+    <main class="app">
+        <header class="topbar">
+            <div class="branding">
+                <div class="logo-gradient">Twicks</div>
+                <h1>Inventory (Bought)</h1>
+            </div>
+        </header>
+
+        <!-- 🧾 Add New Card Row -->
+        <section class="add-area">
+            <!-- Seller dropdown -->
+            <select id="b_seller_select" class="seller-select" aria-label="Select seller"></select>
+
+            <!-- Inputs -->
+            <input id="b_buy" type="number" step="0.01" placeholder="Buy ₱" inputmode="decimal" />
+            <!-- NOTE: Ship-in field is auto-injected by JS as #b_ship; no HTML change needed -->
+            <input id="b_sf" type="number" step="0.01" placeholder="Shipping Fee ₱" inputmode="decimal" />
+            <input id="b_sell" type="number" step="0.01" placeholder="Est sell ₱" inputmode="decimal" />
+            <input id="b_image" type="file" accept="image/*,.heic,.heif" />
+
+            <button id="addBoughtBtn" class="btn primary" type="button">Add Bought Card</button>
+        </section>
+
+        <!-- Bought groups -->
+        <section id="boughtContainer" class="seller-container"></section>
+
+        <!-- Shared modal -->
+        <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="image-modal-bg" id="imageModalBg"></div>
+            <div class="image-modal-content">
+                <button id="closeImageModal" class="modal-close" aria-label="Close image">✕</button>
+                <img id="modalImage" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 🔽 Use the single-file build -->
+</body>
+
+</html>
