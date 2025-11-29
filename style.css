@@ -1255,6 +1255,7 @@ body[data-page="cash"] .grand-total {
         grid-template-columns: 1fr !important;
     }
 }
+
 /* ==========================================
    CASH PAGE — FULL DESKTOP + MOBILE RESTORE
 ==========================================*/
@@ -1285,15 +1286,20 @@ body[data-page="cash"] .grand-total {
 
 /* KPI Cards */
 .cash-page .kpi {
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.03);
     padding: 16px 18px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(4px);
 }
 
-.cash-page .kpi.primary .kpi-title { color: #00ff88; }
-.cash-page .kpi.warn .kpi-title { color: #ffad5c; }
+.cash-page .kpi.primary .kpi-title {
+    color: #00ff88;
+}
+
+.cash-page .kpi.warn .kpi-title {
+    color: #ffad5c;
+}
 
 .cash-page .kpi-value {
     font-size: 22px;
@@ -1313,10 +1319,10 @@ body[data-page="cash"] .grand-total {
 }
 
 .cash-page .balance-card {
-    background: rgba(255,255,255,0.03);
+    background: rgba(255, 255, 255, 0.03);
     padding: 12px 14px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .cash-page .balance-card .balance-label {
@@ -1336,9 +1342,9 @@ body[data-page="cash"] .grand-total {
     grid-template-columns: 150px 120px 1fr 70px 70px;
     gap: 10px;
     align-items: center;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     padding: 14px 16px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
 }
 
@@ -1356,10 +1362,10 @@ body[data-page="cash"] .grand-total {
 
 /* TRANSACTION ITEMS */
 .cash-page .cash-row,
-.cash-page .cash-list > div {
-    background: rgba(255,255,255,0.02);
+.cash-page .cash-list>div {
+    background: rgba(255, 255, 255, 0.02);
     padding: 14px;
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 10px;
 }
 
@@ -1367,8 +1373,8 @@ body[data-page="cash"] .grand-total {
 .cash-page .grand-total {
     padding: 20px 24px;
     border-radius: 12px;
-    border: 1px solid rgba(0,255,136,0.28);
-    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(0, 255, 136, 0.28);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 /* ===============================
@@ -1413,5 +1419,217 @@ body[data-page="cash"] .grand-total {
 
     .cash-page .grand-total {
         padding: 16px;
+    }
+}
+
+/* ======================================================
+      TWICKS — CASH PAGE NEON UPGRADE (Theme: 1B 2B 3C)
+   ====================================================== */
+
+/* Parent container cleanup */
+.cash-page .app {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 40px 40px 120px;
+}
+
+/* GRID LAYOUT */
+.cash-page .cash-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 32px;
+    align-items: start;
+}
+
+/* ===========================================
+    TOP BALANCES — Neon Border Cards (Green→Blue)
+   =========================================== */
+.cash-page .balance-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.cash-page .balance-card {
+    position: relative;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 180, 0.2);
+}
+
+.cash-page .balance-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 14px;
+    background: linear-gradient(120deg, #00ffaa, #0099ff);
+    padding: 1px;
+    opacity: 0.22;
+    /* Medium glow */
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+.cash-page .balance-card .balance-label {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.cash-page .balance-card .balance-value {
+    margin-top: 4px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Highlight TOTAL */
+.cash-page .balance-card.total::before {
+    opacity: 0.35;
+}
+
+/* ===========================================
+    ADD / DEDUCT BAR — Neon Finance Theme
+   =========================================== */
+.cash-page .addline {
+    display: grid;
+    grid-template-columns: 150px 120px 1fr 70px 70px;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 255, 180, 0.18);
+    position: relative;
+}
+
+.cash-page .addline::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 14px;
+    background: linear-gradient(120deg, #00ffaa, #0099ff);
+    padding: 1px;
+    opacity: 0.18;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* ===========================================
+    TRANSACTION ROWS — Dark w/ Neon Borders (3C)
+   =========================================== */
+.cash-page .cash-list>div {
+    padding: 16px 20px;
+    background: rgba(10, 12, 14, 0.55);
+    border-radius: 14px;
+    border: 1px solid rgba(0, 255, 200, 0.12);
+    position: relative;
+    backdrop-filter: blur(4px);
+}
+
+.cash-page .cash-list>div:hover {
+    border-color: rgba(0, 255, 200, 0.28);
+    box-shadow: 0 6px 16px rgba(0, 255, 170, 0.12);
+    transform: translateY(-2px);
+    transition: 0.18s ease;
+}
+
+/* ===========================================
+    KPI CARDS — Premium Finance Panels
+   =========================================== */
+.cash-page .cash-right .kpi {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 18px 22px;
+    border: 1px solid rgba(25, 195, 255, 0.15);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    position: relative;
+}
+
+.cash-page .kpi.primary {
+    border-color: rgba(0, 255, 160, 0.33);
+}
+
+.cash-page .kpi.warn {
+    border-color: rgba(255, 180, 50, 0.35);
+}
+
+.cash-page .kpi .kpi-title {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.cash-page .kpi .kpi-value {
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 6px;
+}
+
+/* ===========================================
+    GRAND TOTAL — Neon Highlight Box
+   =========================================== */
+.cash-page .grand-total {
+    padding: 22px 26px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 255, 160, 0.35);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 26px rgba(0, 255, 180, 0.12);
+}
+
+.cash-page .grand-total .title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #69ffcb;
+}
+
+.cash-page .grand-value {
+    font-size: 28px;
+    font-weight: 900;
+    color: #00ffb3;
+    margin-top: 4px;
+}
+
+.cash-page .grand-meta {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 6px;
+}
+
+/* ===========================================
+            MOBILE RESPONSIVE
+   =========================================== */
+@media (max-width: 900px) {
+    .cash-page .cash-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .cash-page .cash-right {
+        position: static;
+    }
+
+    .cash-page .balance-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cash-page .addline {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .cash-page .balance-row {
+        grid-template-columns: 1fr;
+    }
+
+    .cash-page .kpi {
+        padding: 16px;
+    }
+
+    .cash-page .grand-total {
+        padding: 18px;
     }
 }
