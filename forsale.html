@@ -11,16 +11,19 @@
 </head>
 
 <body>
+
+    <!-- SINGLE NAV (correct) -->
     <nav class="site-nav" role="navigation" aria-label="Primary">
         <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
         <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
         <a href="sold.html" class="site-link" data-page="sold">Sold</a>
+        <a href="cash.html" class="site-link" data-page="cash">Cash</a>
     </nav>
 
-    </nav>
-
+    <!-- Cash FAB -->
     <a class="cash-fab" href="cash.html" title="Go to Cash On Hand">Cash</a>
 
+    <!-- Summary panel -->
     <div class="summary-tab" id="summaryTabFS">📈 Summary</div>
     <aside class="summary-panel" id="summaryPanelFS" aria-live="polite">
         <button class="close-summary" id="closeSummaryFS" aria-label="Close summary">✕</button>
@@ -58,7 +61,7 @@
             <button id="addForSaleBtn" type="button" class="btn primary">Add Listing</button>
         </section>
 
-        <!-- Persistent Buyer picker (used when marking items as Sold) -->
+        <!-- Buyer picker -->
         <section class="add-area" style="margin-top:-8px;">
             <select id="fs_buyer_select" class="seller-select" aria-label="Select buyer"></select>
             <button id="manageBuyersBtn" type="button" class="btn secondary">⚙ Manage Buyers</button>
@@ -67,14 +70,14 @@
             </div>
         </section>
 
-        <!-- Optional info label -->
+        <!-- Info bar -->
         <div id="fsInfoBar" style="margin:4px 6px 10px 6px;opacity:.9;"></div>
 
-        <!-- Tabs auto-injected above this grid by JS -->
+        <!-- Cards grid -->
         <section id="grid" class="grid-four"></section>
 
         <!-- Shared modal -->
-        <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog">
             <div class="image-modal-bg" id="imageModalBgFS"></div>
             <div class="image-modal-content">
                 <button id="closeImageModal" class="modal-close" aria-label="Close image">✕</button>
@@ -84,21 +87,9 @@
         </div>
     </main>
 
-    <!-- Supabase client (UMD build) -->
-
-    <!-- Your app JS (must come AFTER the Supabase script) -->
-    <!-- Shared modal -->
-    <div id="imageModal" class="image-modal" aria-hidden="true">
-        <div class="image-modal-bg" id="imageModalBgFS"></div>
-        <div class="image-modal-content">
-            <button id="closeImageModal" class="modal-close">✕</button>
-            <img id="modalImage" src="" alt="">
-            <div id="modalCaption" class="modal-caption"></div>
-        </div>
-    </div>
-    </main>
-
+    <!-- App JS -->
     <script src="twicks.js" defer></script>
+
 </body>
 
 </html>
