@@ -87,8 +87,18 @@
     <!-- Supabase client (UMD build) -->
 
     <!-- Your app JS (must come AFTER the Supabase script) -->
-    <script src="twicks.js" defer></script>
+    <!-- Shared modal -->
+    <div id="imageModal" class="image-modal" aria-hidden="true">
+        <div class="image-modal-bg" id="imageModalBgFS"></div>
+        <div class="image-modal-content">
+            <button id="closeImageModal" class="modal-close">✕</button>
+            <img id="modalImage" src="" alt="">
+            <div id="modalCaption" class="modal-caption"></div>
+        </div>
+    </div>
+    </main>
 
+    <script src="twicks.js" defer></script>
 </body>
 
 </html>
