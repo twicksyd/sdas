@@ -15,13 +15,7 @@
         <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
         <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
         <a href="sold.html" class="site-link" data-page="sold">Sold</a>
-    </nav>
-    <nav class="site-nav" role="navigation" aria-label="Primary">
-        <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
-        <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
-        <a href="sold.html" class="site-link" data-page="sold">Sold</a>
         <a href="cash.html" class="site-link" data-page="cash">Cash</a>
-       
     </nav>
 
     <a class="cash-fab" href="cash.html" title="Go to Cash On Hand">Cash</a>
@@ -56,14 +50,12 @@
             </div>
         </header>
 
-        <!-- Add new listing -->
         <section class="add-area">
             <input id="f_price" type="number" step="0.01" placeholder="Price ₱" inputmode="decimal" />
             <input id="f_image" type="file" accept="image/*" />
             <button id="addForSaleBtn" type="button" class="btn primary">Add Listing</button>
         </section>
 
-        <!-- Persistent Buyer picker (used when marking items as Sold) -->
         <section class="add-area" style="margin-top:-8px;">
             <select id="fs_buyer_select" class="seller-select" aria-label="Select buyer"></select>
             <button id="manageBuyersBtn" type="button" class="btn secondary">⚙ Manage Buyers</button>
@@ -72,13 +64,10 @@
             </div>
         </section>
 
-        <!-- Optional info label -->
         <div id="fsInfoBar" style="margin:4px 6px 10px 6px;opacity:.9;"></div>
 
-        <!-- Tabs auto-injected above this grid by JS -->
         <section id="grid" class="grid-four"></section>
 
-        <!-- Shared modal -->
         <div id="imageModal" class="image-modal" aria-hidden="true" role="dialog" aria-modal="true">
             <div class="image-modal-bg" id="imageModalBgFS"></div>
             <div class="image-modal-content">
@@ -89,11 +78,7 @@
         </div>
     </main>
 
-    <!-- Supabase client (UMD build) -->
-   
-    <!-- Your app JS (must come AFTER the Supabase script) -->
     <script src="twicks.js" defer></script>
-
 </body>
 
 </html>
