@@ -2241,373 +2241,474 @@ body:not([data-page="cash"]) .seller:hover {
     z-index: 50;
 }
 
-/* ------------------------------------------------ */
-/* 📱 TRUE MOBILE FIX (works on all iPhones)        */
-/* ------------------------------------------------ */
-
+/* ------------------------------------------
+   📱 MOBILE FIXES (CLEAN + VALID)
+   ------------------------------------------ */
 @media (max-width: 768px) {
 
-    /* 🔹 Remove desktop scaling/transform issues */
-    .topbar,
-    .site-nav,
-    .branding,
-    h1 {
+    html,
+    body {
+        font-size: 14px !important;
+        overflow-x: hidden !important;
+    }
+
+    /* ----- NAVIGATION (LEFT-ALIGNED) ----- */
+    .site-nav {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+
+        width: 100% !important;
+        justify-content: flex-start !important;
+        padding: 8px 12px !important;
+        gap: 6px !important;
+
+        background: none !important;
         transform: none !important;
     }
 
-    /* 🔹 Make header smaller and tight */
+    .site-link {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+        border-radius: 10px !important;
+        white-space: nowrap;
+    }
+
+    /* ----- TOPBAR + HEADER ----- */
+    .topbar {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+        width: 100% !important;
+        padding: 0 12px !important;
+        margin: 0 0 10px 0 !important;
+        transform: none !important;
+    }
+
+    .top-right {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+    }
+
     .branding {
+        width: 100% !important;
+        text-align: left !important;
         margin-top: 10px !important;
-        text-align: center !important;
+        transform: none !important;
     }
 
     h1 {
         font-size: 22px !important;
-        line-height: 26px !important;
-        margin: 5px 0 !important;
+        margin: 4px 0 !important;
     }
 
-    /* 🔹 Navigation tabs */
-    .site-nav {
-        display: flex !important;
-        justify-content: center !important;
-        gap: 4px !important;
-        padding: 0 !important;
-        margin: 0 auto 10px auto !important;
-        width: 100% !important;
-        transform: scale(0.8) !important;
-    }
-
-    .site-link {
-        font-size: 14px !important;
-        padding: 6px 12px !important;
-    }
-
-    /* 🔹 Reduce form area spacing */
+    /* ----- FORM AREA ----- */
     .add-area {
-        width: 92% !important;
-        margin: 0 auto !important;
-        gap: 6px !important;
-        padding: 0 !important;
+        width: 100% !important;
+        padding: 0 12px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
     }
 
-    input,
-    select {
-        font-size: 15px !important;
+    .add-area input,
+    .add-area select,
+    .add-area input[type=file] {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 10px 12px !important;
+    }
+
+    .btn {
+        width: 100% !important;
+        font-size: 14px !important;
         padding: 10px !important;
     }
 
-    /* 🔹 Main button size */
-    .btn {
-        font-size: 15px !important;
-        padding: 12px !important;
-    }
-
-    /* 🔹 Cash button */
+    /* ----- CASH FAB BUTTON ----- */
     .cash-fab {
-        transform: translateX(-50%) !important;
-        bottom: 40px !important;
+        bottom: 35px !important;
+        padding: 10px 24px !important;
         font-size: 16px !important;
-        padding: 10px 22px !important;
-        border-radius: 30px !important;
+        transform: translateX(-50%) !important;
     }
 
-    /* 🔹 Card layout */
-    .seller-card,
-    .card-item {
+    /* ----- CARDS: 1 PER ROW ----- */
+    .grid-four,
+    .card-grid,
+    .buyer-cards {
+        grid-template-columns: 1fr !important;
         width: 100% !important;
-        margin: 10px auto !important;
+        padding: 0 12px !important;
     }
 
-    .card-img img {
+    .card {
         width: 100% !important;
+        margin: 0 auto 12px auto !important;
+    }
+
+    .img-wrap {
+        aspect-ratio: 4 / 3 !important;
         height: auto !important;
     }
+}
 
-    /* 🔹 Summary tab */
-    #summaryTab {
-        top: 90px !important;
-        left: 10px !important;
-        padding: 5px 10px !important;
-        font-size: 12px !important;
-    }
+/* ----------------------------------------------------
+   📱 FINAL TWICKS MOBILE LAYOUT (Left-Aligned)
+   ---------------------------------------------------- */
+@media (max-width: 768px) {
 
-    /* 🔹 Prevent horizontal scrolling */
-    body,
-    html {
+    html,
+    body {
+        font-size: 14px !important;
         overflow-x: hidden !important;
     }
-}
 
-/* ------------------------------------------------ */
-/* 📱 FIX NAVBAR SIZE ON MOBILE                    */
-/* ------------------------------------------------ */
-
-@media (max-width: 768px) {
-
-    /* FULL NAVBAR CONTAINER */
-    nav.site-nav {
-        position: relative !important;
-        top: 0 !important;
-        left: 50% !important;
-        transform: translateX(-50%) scale(0.65) !important;
-        width: max-content !important;
-        margin-top: 5px !important;
-        z-index: 9999 !important;
-    }
-
-    /* NAV BUTTONS */
-    nav.site-nav .site-link {
-        padding: 6px 10px !important;
-        font-size: 13px !important;
-        border-radius: 8px !important;
-    }
-
-    /* TITLE */
-    h1 {
-        font-size: 20px !important;
-        text-align: center !important;
-        margin-top: 10px !important;
-    }
-
-    /* LOGO (Twicks) */
-    .logo-gradient {
-        font-size: 26px !important;
-        margin-bottom: 0 !important;
-    }
-
-    /* REMOVE DESKTOP TRANSFORM */
-    .topbar,
-    .branding {
-        transform: none !important;
-    }
-}
-
-/* ------------------------------------------------ */
-/* 📱 FIX TOP HEADER (Sign in / Backup buttons)     */
-/* ------------------------------------------------ */
-
-@media (max-width: 768px) {
-
-    /* shrink the entire top header */
-    .topbar {
-        transform: scale(0.75) !important;
-        transform-origin: top center !important;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-    }
-
-    /* shrink sign in / backup buttons */
-    .topbar button,
-    .topbar .btn,
-    .topbar .auth-btn {
-        font-size: 12px !important;
-        padding: 6px 10px !important;
-        height: auto !important;
-    }
-
-    /* shrink the icons inside those buttons */
-    .topbar img,
-    .topbar svg {
-        width: 20px !important;
-        height: 20px !important;
-    }
-
-    /* prevent giant spacing */
-    .branding {
-        margin-bottom: 5px !important;
-        /* ------------------------------------------------ */
-        /* 📱 Fix Mobile Title Size & Spacing               */
-        /* ------------------------------------------------ */
-
-        /* ================================
-   HARD MOBILE LAYOUT OVERRIDES
-   ================================ */
-        @media (max-width: 768px) {
-
-            /* Base font size smaller on mobile */
-            html,
-            body {
-                font-size: 14px;
-            }
-
-            /* Main app container */
-            .app,
-            main {
-                max-width: 100%;
-                padding: 16px;
-                margin: 0 auto;
-            }
-
-            /* TITLE: "Twicks Inventory (Bought)" */
-            h1 {
-                font-size: 26px !important;
-                line-height: 1.1 !important;
-                margin: 0 0 8px 0 !important;
-            }
-
-            /* Any secondary heading */
-            h2 {
-                font-size: 20px !important;
-                line-height: 1.1 !important;
-                margin-bottom: 6px !important;
-            }
-
-            /* Top tabs: Inventory / For Sale / Sold */
-            .nav-tabs,
-            .top-tabs,
-            .tab-row {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px;
-            }
-
-            .nav-tabs button,
-            .top-tabs button,
-            .tab-row button {
-                font-size: 14px !important;
-                padding: 8px 14px !important;
-            }
-
-            /* Form layout → single column */
-            .form-row,
-            .card-row,
-            .row {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            /* Inputs & selects */
-            input,
-            select,
-            textarea {
-                width: 100%;
-                font-size: 14px !important;
-                padding: 10px 12px !important;
-            }
-
-            /* General buttons */
-            .btn,
-            .primary-btn,
-            button {
-                font-size: 14px !important;
-                padding: 10px 16px !important;
-            }
-
-            /* "Add Bought Card" */
-            .add-btn,
-            .add-card-btn {
-                width: 100% !important;
-            }
-
-            /* Cash bubble at the bottom */
-            .cash-fab {
-                width: 170px !important;
-                height: 60px !important;
-                font-size: 18px !important;
-            }
-        }
-    }
-}
-
-/* MOBILE FIX: Navbar Cleanup */
-@media (max-width: 768px) {
-
-    /* Make navbar vertical and centered */
-    .site-nav {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 8px !important;
-        position: relative !important;
-        margin-top: 10px !important;
-        transform: none !important;
-        width: 100% !important;
-    }
-
-    .site-link {
-        font-size: 13px !important;
-        padding: 8px 16px !important;
-        border-radius: 12px !important;
-        width: auto !important;
-        white-space: nowrap !important;
-    }
-
-    /* Fix top header spacing */
-    .branding {
-        text-align: center !important;
-        margin-top: 40px !important;
-    }
-
-    /* Move sign-in/backup buttons below navbar */
-    .topbar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .top-right {
-        display: flex;
-        gap: 8px;
-        margin-top: 10px;
-        justify-content: center;
-    }
-}
-
-/* ------------------------------------------
-   MOBILE HEADER + NAVBAR FIX
-   ------------------------------------------ */
-@media (max-width: 768px) {
-
-    /* Reset weird transforms */
+    /* ---------------- NAVIGATION (LEFT) ---------------- */
     .site-nav {
         position: relative !important;
         top: 0 !important;
         left: 0 !important;
         transform: none !important;
 
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        gap: 6px !important;
-
         width: 100% !important;
-        padding: 10px 0 !important;
-        margin: 0 auto 10px !important;
-        z-index: 9999;
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+
+        padding: 10px 12px !important;
+        gap: 6px !important;
+        background: none !important;
     }
 
     .site-link {
-        font-size: 12px !important;
-        padding: 6px 14px !important;
+        font-size: 13px !important;
+        padding: 6px 12px !important;
         border-radius: 10px !important;
         white-space: nowrap !important;
     }
 
-    /* Move "Sign in / Backup / Restore" BELOW navbar */
+    /* ---------------- HEADER ---------------- */
+    .topbar {
+        width: 100% !important;
+        padding: 0 12px !important;
+        margin: 0 0 12px 0 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+
+    .branding {
+        width: 100% !important;
+        text-align: left !important;
+        margin-top: 10px !important;
+    }
+
+    h1 {
+        font-size: 22px !important;
+        margin: 4px 0 !important;
+    }
+
+    /* Top-right buttons (Sign in / Backup / Restore) */
     .top-right {
         display: flex !important;
         flex-wrap: wrap !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         gap: 6px !important;
-        margin-top: 5px !important;
         width: 100% !important;
     }
 
+    /* ---------------- FORM AREA ---------------- */
+    .add-area {
+        width: 100% !important;
+        padding: 0 12px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    .add-area input,
+    .add-area select,
+    .add-area input[type=file] {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 10px 12px !important;
+    }
+
+    .btn {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+
+    /* ---------------- FAB (CASH BUTTON) ---------------- */
+    .cash-fab {
+        bottom: 35px !important;
+        padding: 10px 24px !important;
+        font-size: 16px !important;
+        transform: translateX(-50%) !important;
+    }
+
+    /* ---------------- CARD LAYOUT ---------------- */
+    .grid-four,
+    .card-grid,
+    .buyer-cards {
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+        padding: 0 12px !important;
+    }
+
+    .card {
+        width: 100% !important;
+        margin: 0 auto 12px auto !important;
+    }
+
+    .img-wrap {
+        aspect-ratio: 4 / 3 !important;
+        height: auto !important;
+    }
+}
+
+/* ============================================================
+   📱 MOBILE RESPONSIVE IMPROVEMENTS (Append Only)
+   — Safe to add without breaking existing design
+============================================================ */
+@media (max-width: 768px) {
+
+    /* Prevent horizontal scroll globally */
+    html,
+    body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    /* Navigation spacing fixes */
+    .site-nav {
+        width: 100% !important;
+        gap: 8px !important;
+        padding: 10px 12px !important;
+        justify-content: flex-start !important;
+        background: none !important;
+        left: 0 !important;
+        right: 0 !important;
+        position: relative !important;
+    }
+
+    .site-link {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+        border-radius: 10px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Topbar fixes */
     .topbar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 10px;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 0 12px !important;
+        gap: 6px !important;
+        width: 100% !important;
     }
 
-    /* Title centered properly */
     .branding {
-        text-align: center !important;
         width: 100% !important;
-        margin-top: 20px !important;
+        margin-top: 6px !important;
+    }
+
+    .top-right {
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Fix title scaling */
+    h1 {
+        font-size: 22px !important;
+    }
+
+    /* Form area becomes stacked */
+    .add-area {
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 0 12px !important;
+        gap: 10px !important;
+    }
+
+    .add-area input,
+    .add-area select,
+    .add-area input[type=file],
+    .btn {
+        width: 100% !important;
+        font-size: 14px !important;
+    }
+
+    /* Cash button adjust */
+    .cash-fab {
+        bottom: 32px !important;
+        font-size: 16px !important;
+        padding: 10px 22px !important;
+    }
+
+    /* Card grid: 1 per row */
+    .grid-four,
+    .card-grid,
+    .buyer-cards {
+        width: 100% !important;
+        grid-template-columns: 1fr !important;
+        padding: 0 12px !important;
+        gap: 14px !important;
+    }
+
+    .card {
+        width: 100% !important;
+    }
+
+    /* Ensure images behave correctly on small screens */
+    .img-wrap {
+        aspect-ratio: 4 / 3 !important;
+        height: auto !important;
+    }
+
+    /* Hide desktop-only summary panel */
+    .summary-tab,
+    .summary-panel {
+        display: none !important;
+    }
+
+    /* Buyer actions (Sold page) stack nicely */
+    .buyer-actions-right {
+        position: static !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        padding: 10px !important;
+    }
+
+    .buyer-actions-right .btn {
+        width: calc(50% - 8px) !important;
+        min-width: 150px !important;
+    }
+}
+
+/* ============================================================
+   📱 ULTRA SMALL DEVICES (≤ 480px)
+============================================================ */
+@media (max-width: 480px) {
+
+    /* Slightly larger tap targets */
+    .site-link {
+        padding: 8px 14px !important;
+    }
+
+    /* Ensure readable form inputs */
+    .add-area input,
+    .add-area select,
+    .btn {
+        padding: 12px !important;
+        font-size: 15px !important;
+    }
+
+    /* Bigger price badges */
+    .price-badge {
+        font-size: 14px !important;
+        padding: 6px 12px !important;
+    }
+
+    /* Cards spacing */
+    .card {
+        margin-bottom: 10px !important;
+    }
+}
+
+/* ============================================================
+   🛠️ MOBILE BUG FIX PATCH (Safe override only)
+   Fixes:
+   - Navigation overlapping content
+   - Horizontal overflow on cards
+   - Cash FAB blocking bottom UI
+============================================================ */
+@media (max-width: 768px) {
+
+    /* 1️⃣ FIX NAV OVERLAP — push layout down safely */
+    body {
+        padding-top: 60px !important;
+        /* gives space for nav */
+    }
+
+    .site-nav {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        padding: 10px 12px !important;
+        background: rgba(10, 14, 27, 0.9) !important;
+        backdrop-filter: blur(8px) !important;
+
+        z-index: 9999 !important;
+        /* keeps nav above all */
+    }
+
+    /* Ensure topbar never tunnels under nav */
+    .topbar {
+        margin-top: 10px !important;
+    }
+
+    /* 2️⃣ FIX CARD OVERFLOW — prevents horizontal scrolling */
+    .grid-four,
+    .card-grid,
+    .buyer-cards {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 12px !important;
+        overflow: hidden !important;
+    }
+
+    .card,
+    .buyer-cards .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    /* Images must never exceed width */
+    .img-wrap,
+    .img-wrap img {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* 3️⃣ FIX CASH FAB BLOCKING ELEMENTS */
+    .cash-fab {
+        bottom: 90px !important;
+        /* moves FAB higher */
+        z-index: 9999 !important;
+    }
+
+    /* Add extra page padding so FAB doesn't sit on content */
+    .app {
+        padding-bottom: 160px !important;
+    }
+
+    /* 3B: FAB should shrink slightly on smaller screens */
+    @media (max-width: 480px) {
+        .cash-fab {
+            padding: 8px 18px !important;
+            font-size: 14px !important;
+        }
+    }
+
+    /* Ensure no weird horizontal scroll anywhere */
+    html,
+    body {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
     }
 }
