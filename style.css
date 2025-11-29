@@ -1,8 +1,6 @@
 /* ============================
-   CLEAN + CONSOLIDATED CSS
-   PART 1 / 3
+   CORE VARIABLES & RESET
 ============================ */
-
 :root {
     --bg: #050507;
     --panel: #0b0c0f;
@@ -17,15 +15,18 @@
     --bad: #ff6b6b;
 }
 
-/* RESET */
 * {
     box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, rgba(0,119,255,0.04), rgba(255,45,45,0.04)), var(--bg);
+    background: linear-gradient(135deg, rgba(0, 119, 255, 0.04), rgba(255, 45, 45, 0.04)), var(--bg);
     color: #e9f7f2;
     font-family: 'Poppins', sans-serif;
 }
@@ -50,7 +51,7 @@ body {
     color: #e9f7f2;
     border: 2px solid transparent;
     font-weight: 700;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     transition: transform .18s, box-shadow .18s, background .18s, border-image .18s;
 }
 
@@ -70,7 +71,7 @@ body {
     background: var(--neonGradient);
     color: #041018;
     border: none;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 
 .site-link:hover {
@@ -95,12 +96,17 @@ body {
     background: linear-gradient(90deg, #00e1ff, #7cff00, #ff0080, #ffae00);
     background-size: 300% 100%;
     animation: rgbmove 6s linear infinite;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
 }
 
 @keyframes rgbmove {
-    0% { background-position: 0% 50% }
-    100% { background-position: 100% 50% }
+    0% {
+        background-position: 0% 50%
+    }
+
+    100% {
+        background-position: 100% 50%
+    }
 }
 
 /* ============================
@@ -118,7 +124,7 @@ body {
     font-weight: 700;
     z-index: 60;
     cursor: pointer;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
 .summary-panel {
@@ -127,15 +133,15 @@ body {
     top: 50%;
     transform: translateY(-50%);
     width: 320px;
-    background: linear-gradient(180deg, rgba(8,10,12,0.98), rgba(14,15,18,0.98));
+    background: linear-gradient(180deg, rgba(8, 10, 12, 0.98), rgba(14, 15, 18, 0.98));
     border-radius: 0 10px 10px 0;
     padding: 18px;
     z-index: 70;
-    box-shadow: 10px 18px 50px rgba(0,0,0,0.7);
-    transition: left .28s cubic-bezier(.2,.9,.2,1);
+    box-shadow: 10px 18px 50px rgba(0, 0, 0, 0.7);
+    transition: left .28s cubic-bezier(.2, .9, .2, 1);
 }
 
-.summary-tab:hover + .summary-panel,
+.summary-tab:hover+.summary-panel,
 .summary-panel:hover {
     left: 0;
 }
@@ -170,7 +176,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     padding: 10px;
     border-radius: 8px;
 }
@@ -185,8 +191,13 @@ body {
     color: #ffdfdf;
 }
 
-.value-green { color: var(--good); }
-.value-red   { color: #ff9b9b; }
+.value-green {
+    color: var(--good);
+}
+
+.value-red {
+    color: #ff9b9b;
+}
 
 .summary-sellers {
     margin-top: 8px;
@@ -200,7 +211,7 @@ body {
     padding: 8px;
     border-radius: 6px;
     margin-bottom: 6px;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     font-size: 13px;
 }
 
@@ -208,7 +219,10 @@ body {
    APP LAYOUT
 ============================ */
 .app {
-    padding: 28px 40px 100px 40px;
+    padding: 28px 40px 110px 40px;
+    /* extra bottom padding for FAB */
+    max-width: 1320px;
+    margin: 0 auto;
 }
 
 .topbar {
@@ -250,12 +264,15 @@ body {
 .add-area select {
     padding: 10px 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     background: #0d0d0e;
     color: #e8f8f3;
     min-width: 160px;
 }
 
+/* ============================
+   BUTTONS
+============================ */
 .btn {
     padding: 10px 14px;
     border-radius: 10px;
@@ -267,19 +284,25 @@ body {
 .btn.primary {
     background: linear-gradient(90deg, var(--accent1), #ff2d2d);
     color: #00121a;
-    box-shadow: 0 10px 30px rgba(0,119,255,0.06);
+    box-shadow: 0 10px 30px rgba(0, 119, 255, 0.06);
 }
 
 .btn.secondary {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #cfe;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e9f7f2;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.btn.secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .small-btn {
     padding: 6px 8px;
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     background: transparent;
     color: #e8f8f3;
     cursor: pointer;
@@ -307,13 +330,13 @@ body {
     border-radius: 12px;
     overflow: hidden;
     transition: transform .38s, box-shadow .28s, opacity .28s;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     position: relative;
 }
 
 .card:hover {
     transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 28px 80px rgba(0,119,255,0.12);
+    box-shadow: 0 28px 80px rgba(0, 119, 255, 0.12);
 }
 
 .img-wrap {
@@ -355,6 +378,7 @@ body {
     justify-content: space-between;
     gap: 8px;
 }
+
 /* ============================
    SELLER / BUYER SECTIONS
 ============================ */
@@ -365,10 +389,10 @@ body {
 }
 
 .seller {
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
     border-radius: 12px;
     padding: 14px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .seller-header {
@@ -408,22 +432,23 @@ body {
 }
 
 .buyer-block {
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
     border-radius: 10px;
     padding: 12px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .buyer-block.paid {
-    border-color: rgba(0,255,136,0.25);
-    box-shadow: inset 0 0 0 1px rgba(0,255,136,0.15);
+    border-color: rgba(0, 255, 136, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(0, 255, 136, 0.15);
 }
 
 .buyer-header {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+    gap: 16px;
+    padding: 10px 8px 0 8px;
 }
 
 .buyer-title {
@@ -443,6 +468,42 @@ body {
     gap: 12px;
 }
 
+/* RIGHT ACTION STACK */
+.buyer-actions-right {
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 200px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 12px;
+    position: sticky;
+    top: 72px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+}
+
+.buyer-actions-right .btn {
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 12px;
+    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+
+.buyer-actions-right .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.buyer-actions-right .btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
 .status-row {
     display: flex;
     gap: 8px;
@@ -455,19 +516,19 @@ body {
     border-radius: 999px;
     font-weight: 700;
     font-size: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .status-pill.paid {
-    background: rgba(0,255,136,0.12);
+    background: rgba(0, 255, 136, 0.12);
     color: #aaffd9;
-    border-color: rgba(0,255,136,0.25);
+    border-color: rgba(0, 255, 136, 0.25);
 }
 
 .status-pill.pending {
-    background: rgba(255,80,80,0.1);
+    background: rgba(255, 80, 80, 0.1);
     color: #ffd3d3;
-    border-color: rgba(255,80,80,0.25);
+    border-color: rgba(255, 80, 80, 0.25);
 }
 
 /* ============================
@@ -489,7 +550,7 @@ body {
 .image-modal-bg {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(4px);
 }
 
@@ -545,7 +606,7 @@ body {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 14px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .cash-card.total .value {
@@ -553,8 +614,13 @@ body {
     font-weight: 800;
 }
 
-.rev-card.green .value { color: var(--good); }
-.rev-card.red .value { color: #ff9b9b; }
+.rev-card.green .value {
+    color: var(--good);
+}
+
+.rev-card.red .value {
+    color: #ff9b9b;
+}
 
 .soft-total {
     margin-top: 8px;
@@ -579,7 +645,7 @@ body {
 .cash-form input {
     padding: 10px 12px;
     border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     background: #0d0d0e;
     color: #e8f8f3;
 }
@@ -594,10 +660,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .badge {
@@ -605,16 +671,32 @@ body {
     border-radius: 999px;
     font-weight: 700;
     font-size: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
 }
 
-.badge-gcash { border-color: #00bcd4; color: #a8eff7; }
-.badge-sea   { border-color: #00ffa2; color: #b6ffd9; }
-.badge-cash  { border-color: #ffd166; color: #ffe6b3; }
+.badge-gcash {
+    border-color: #00bcd4;
+    color: #a8eff7;
+}
 
-.amount-pos { color: #d0ffe9; }
-.amount-neg { color: #ffb1b1; }
+.badge-sea {
+    border-color: #00ffa2;
+    color: #b6ffd9;
+}
+
+.badge-cash {
+    border-color: #ffd166;
+    color: #ffe6b3;
+}
+
+.amount-pos {
+    color: #d0ffe9;
+}
+
+.amount-neg {
+    color: #ffb1b1;
+}
 
 .meta {
     opacity: .85;
@@ -623,8 +705,8 @@ body {
 
 .grand-total {
     margin-top: 16px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border: 1px solid rgba(0,255,136,0.25);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(0, 255, 136, 0.25);
     border-radius: 12px;
     padding: 14px;
 }
@@ -646,101 +728,31 @@ body {
 }
 
 /* ============================
-   RESPONSIVE BEHAVIOR
-============================ */
-@media (max-width:1100px) {
-    .grid-four { grid-template-columns: repeat(3, 1fr); }
-    .card-grid { grid-template-columns: repeat(3, 1fr); }
-    .buyer-cards { grid-template-columns: repeat(3, 1fr); }
-    .img-wrap { height: 220px; }
-}
-
-@media (max-width:800px) {
-    .grid-four { grid-template-columns: repeat(2, 1fr); }
-    .card-grid { grid-template-columns: repeat(2, 1fr); }
-    .buyer-cards { grid-template-columns: repeat(2, 1fr); }
-    .summary-panel, .summary-tab { display: none; }
-    .app { padding: 18px; }
-    .img-wrap { height: 180px; }
-    .cash-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width:480px) {
-    .grid-four { grid-template-columns: 1fr; }
-    .card-grid { grid-template-columns: 1fr; }
-    .buyer-cards { grid-template-columns: 1fr; }
-    .img-wrap { height: 220px; }
-}
-/* ============================
-   BUYER HEADER + ACTION STACK
-============================ */
-.buyer-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 10px 8px 0 8px;
-}
-
-.buyer-actions-right {
-    margin-left: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-    width: 200px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px;
-    padding: 12px;
-    position: sticky;
-    top: 72px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    backdrop-filter: blur(6px);
-}
-
-.buyer-actions-right .btn {
-    width: 100%;
-    text-align: center;
-    border-radius: 10px;
-    padding: 10px 12px;
-    transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-}
-
-.buyer-actions-right .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-
-.buyer-actions-right .btn:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-
-/* ============================
    FOR SALE – CARD REFINES
 ============================ */
-#grid { padding-top: 6px; }
+#grid {
+    padding-top: 6px;
+}
 
 #grid .card {
     position: relative;
     border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.06);
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
     overflow: hidden;
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 
 #grid .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 18px 44px rgba(0,0,0,0.35);
-    border-color: rgba(0,119,255,0.28);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+    border-color: rgba(0, 119, 255, 0.28);
 }
 
 #grid .img-wrap {
     height: 280px;
     background: #0a0b0f;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 #grid .img-wrap img {
@@ -750,8 +762,6 @@ body {
 #grid .card:hover .img-wrap img {
     transform: scale(1.02);
 }
-
-#grid .info { padding: 12px 14px; }
 
 #grid .title {
     font-weight: 800;
@@ -767,12 +777,12 @@ body {
     padding: 6px 10px;
     border-radius: 999px;
     background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     font-weight: 700;
     color: #e9f7f2;
 }
 
-/* FOR SALE ACTION BUTTONS */
+/* FS actions */
 #grid .card .card-actions {
     display: flex;
     gap: 8px;
@@ -788,8 +798,8 @@ body {
 #grid .small-btn {
     padding: 8px 10px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
     color: #e9f7f2;
     font-weight: 700;
     cursor: pointer;
@@ -804,18 +814,18 @@ body {
 }
 
 #grid .small-btn.delete-item {
-    background: rgba(255,99,71,0.08);
-    border-color: rgba(255,99,71,0.2);
+    background: rgba(255, 99, 71, 0.08);
+    border-color: rgba(255, 99, 71, 0.2);
 }
 
-/* SOLD OVERLAY */
+/* SOLD overlay + price badge */
 #grid .sold-overlay {
     position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
     opacity: 0;
     transition: opacity .2s ease;
     pointer-events: none;
@@ -827,8 +837,8 @@ body {
 }
 
 #grid .sold-tag {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffe6e6;
     padding: 8px 12px;
     border-radius: 12px;
@@ -836,8 +846,6 @@ body {
     letter-spacing: .4px;
 }
 
-/* PRICE BADGE */
-#grid .price-badge,
 .price-badge {
     position: absolute;
     top: 10px;
@@ -845,84 +853,16 @@ body {
     z-index: 3;
     padding: 6px 10px;
     border-radius: 999px;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(3px);
-    border: 1px solid rgba(255,255,255,0.14);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     font-weight: 800;
     letter-spacing: .2px;
     color: #eaf7f4;
 }
 
 /* ============================
-   SOLD PAGE – IMAGE GRID FIX
-============================ */
-.buyer-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    width: 100%;
-}
-
-.buyer-cards .card {
-    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-.buyer-cards .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 34px rgba(0,0,0,0.3);
-}
-
-.buyer-cards .img-wrap {
-    height: 230px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0a0b0e;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.buyer-cards .img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.25s ease;
-}
-
-.buyer-cards .card:hover .img-wrap img {
-    transform: scale(1.03);
-}
-
-@media (max-width:1200px) {
-    .buyer-cards { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width:800px) {
-    .buyer-cards { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width:500px) {
-    .buyer-cards { grid-template-columns: 1fr; }
-}
-
-/* ============================
-   SECONDARY BUTTON IMPROVE
-============================ */
-.btn.secondary {
-    background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #e9f7f2;
-    transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.btn.secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-/* ============================
-   RGB GLOWS & PANELS
+   RGB GLOW UTILITY
 ============================ */
 .rgb {
     position: relative;
@@ -944,7 +884,9 @@ body {
 }
 
 @keyframes hueSpin {
-    to { filter: hue-rotate(360deg); }
+    to {
+        filter: hue-rotate(360deg);
+    }
 }
 
 .cash-panel::before {
@@ -952,140 +894,165 @@ body {
 }
 
 /* ============================
-   MOBILE FIXES
+   RESPONSIVE – DESKTOP → TABLET
 ============================ */
-@media (max-width:768px) {
-    html, body {
-        font-size: 14px !important;
-        overflow-x: hidden !important;
-        width: 100% !important;
+@media (max-width: 1100px) {
+    .grid-four {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .buyer-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .img-wrap {
+        height: 220px;
+    }
+
+    .cash-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================
+   RESPONSIVE – TABLET / LARGE PHONE
+============================ */
+@media (max-width: 900px) {
+    html {
+        font-size: 15px;
+    }
+
+    .app {
+        padding: 80px 16px 120px 16px;
+        max-width: 100%;
     }
 
     .site-nav {
-        position: relative !important;
-        width: 100% !important;
-        justify-content: flex-start !important;
-        padding: 10px 12px !important;
-        gap: 6px !important;
-        background: none !important;
-        left: 0 !important;
-        right: 0 !important;
-        transform: none !important;
-    }
-
-    .site-link {
-        font-size: 13px !important;
-        padding: 6px 12px !important;
-        border-radius: 10px !important;
-        white-space: nowrap !important;
-    }
-
-    .topbar {
-        width: 100% !important;
-        padding: 0 12px !important;
-        margin-bottom: 12px !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 6px !important;
-    }
-
-    .branding {
-        width: 100% !important;
-        text-align: left !important;
-        margin-top: 10px !important;
-    }
-
-    .top-right {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 6px !important;
-        width: 100% !important;
-    }
-
-    h1 {
-        font-size: 22px !important;
-        margin: 4px 0 !important;
-    }
-
-    .add-area {
-        width: 100% !important;
-        padding: 0 12px !important;
-        flex-direction: column !important;
-        gap: 8px !important;
-    }
-
-    .add-area input,
-    .add-area select,
-    .add-area input[type=file],
-    .btn {
-        width: 100% !important;
-        font-size: 14px !important;
-    }
-
-    .cash-fab {
-        bottom: 35px !important;
-        padding: 10px 24px !important;
-        font-size: 16px !important;
-        transform: translateX(-50%) !important;
+        right: 12px;
+        top: 10px;
+        gap: 6px;
     }
 
     .grid-four,
     .card-grid,
     .buyer-cards {
-        grid-template-columns: 1fr !important;
-        width: 100% !important;
-        padding: 0 12px !important;
-        gap: 14px !important;
-    }
-
-    .card {
-        width: 100% !important;
-        margin-bottom: 12px !important;
-    }
-
-    .img-wrap {
-        aspect-ratio: 4 / 3 !important;
-        height: auto !important;
-    }
-
-    .summary-tab,
-    .summary-panel {
-        display: none !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
     }
 
     .buyer-actions-right {
-        position: static !important;
-        width: 100% !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 8px !important;
-        padding: 10px !important;
+        position: static;
+        width: 220px;
+        top: auto;
     }
 
-    .buyer-actions-right .btn {
-        width: calc(50% - 8px) !important;
-        min-width: 150px !important;
+    .cash-grid {
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width:480px) {
+/* ============================
+   RESPONSIVE – iPhone 12/13/14
+   (390–428 width-ish)
+============================ */
+@media (max-width: 430px) {
+    html {
+        font-size: 14px;
+    }
+
     .site-link {
-        padding: 8px 14px !important;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .topbar h1 {
+        font-size: 1.35rem;
+    }
+
+    .add-area {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
     }
 
     .add-area input,
     .add-area select,
+    .add-area input[type="file"],
     .btn {
-        padding: 12px !important;
-        font-size: 15px !important;
+        width: 100%;
     }
 
-    .price-badge {
-        font-size: 14px !important;
-        padding: 6px 12px !important;
+    .grid-four,
+    .card-grid,
+    .buyer-cards {
+        grid-template-columns: 1fr;
     }
 
     .card {
-        margin-bottom: 10px !important;
+        width: 100%;
+        margin: 0 auto 12px;
+    }
+
+    .img-wrap {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .buyer-actions-right {
+        width: 100%;
+        margin-top: 10px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px;
+    }
+
+    .buyer-actions-right .btn {
+        flex: 1 1 calc(50% - 8px);
+        min-width: 150px;
+    }
+
+    .cash-fab {
+        bottom: 32px;
+        padding: 10px 22px;
+        font-size: 0.95rem;
+    }
+
+    .summary-tab,
+    .summary-panel {
+        display: none;
+    }
+}
+
+/* ============================
+   RESPONSIVE – very small phones
+============================ */
+@media (max-width: 375px) {
+    html {
+        font-size: 13px;
+    }
+
+    .site-link {
+        padding: 6px 8px;
+    }
+
+    .cash-fab {
+        font-size: 0.9rem;
+        padding: 9px 18px;
+    }
+
+    .price-badge {
+        font-size: 13px;
+        padding: 5px 10px;
     }
 }
