@@ -208,6 +208,65 @@ const TWX = (() => {
                 r.onload = () => res(r.result);
                 r.onerror = rej;
                 r.readAsDataURL(file);
+                /* =========================================
+   SUPABASE STORAGE (images in bucket "cards")
+========================================= */
+                const SUPABASE_URL = "https://zqbkuwrwgvfhkajsebfo.supabase.co";   // <-- paste from Supabase
+                const SUPABASE_ANON_KEY = "YeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYmt1d3J3Z3ZmaGthanNlYmZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI2NDU3NDMsImV4cCI6MjA3ODIyMTc0M30.7XUv5Q_BsNRrJ5vFqOPQmdNIIhNSvEFO_0jX_Kp9VRk";              // <-- paste from Supabase
+                const SUPABASE_BUCKET = "cards";
+
+                const SupaStore = (() => {
+                    let client = null;
+
+                    function getClient() {
+                        if (!window.supabase) {
+                            console.warn("[Twicks] supabase-js not loaded; using local dataURL fallback.");
+                            return null;
+                        }
+                        if (!client) {
+                            const { createClient } = window.supabase;
+                            client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                        }
+                        return client;
+                    }
+
+                    async function uploadCardImage(file) {
+                        const supa = getClient();
+                        if (!supa) {
+                            // No Supabase? still work, but images stay in local storage
+                            const dataUrl = await Img.compress(file, 1000, 0.7);
+                            return dataUrl;
+                        }
+
+                        // 1) Compress to a dataURL (smaller than raw phone image)
+                        const dataUrl = await Img.compress(file, 1200, 0.8);
+                        const blob = await (await fetch(dataUrl)).blob();
+
+                        const ext = blob.type === "image/webp" ? "webp" : "jpg";
+                        const path = `cards/${Date.now()}_${Math.random()
+                            .toString(36)
+                            .slice(2)}.${ext}`;
+
+                        const { error } = await supa.storage
+                            .from(SUPABASE_BUCKET)
+                            .upload(path, blob, {
+                                cacheControl: "3600",
+                                upsert: false,
+                                contentType: blob.type,
+                            });
+
+                        if (error) {
+                            console.warn("[Twicks] Supabase upload failed; falling back to local dataURL", error);
+                            return dataUrl; // fallback: inline dataURL (old behavior)
+                        }
+
+                        const { data } = supa.storage.from(SUPABASE_BUCKET).getPublicUrl(path);
+                        return data?.publicUrl || dataUrl;
+                    }
+
+                    return { uploadCardImage };
+                })();
+
             });
         },
         async compress(file, maxDim = 1000, quality = 0.7) {
@@ -1202,17 +1261,15 @@ const TWX = (() => {
                     return;
                 }
 
-                let imageData = "";
+                let imageUrl = "";
                 try {
-                    imageData = await Img.compress(file, 1000, 0.7);
-                } catch {
-                    try {
-                        imageData = await Img.fileToDataURL(file);
-                    } catch {
-                        alert("Could not read image.");
-                        return;
-                    }
+                    // Upload to Supabase (or fallback to local dataURL if not available)
+                    imageUrl = await SupaStore.uploadCardImage(file);
+                } catch (err) {
+                    console.warn("Image upload failed; falling back to local dataURL", err);
+                    imageUrl = await Img.compress(file, 1000, 0.7);
                 }
+
                 const name = Util.deriveNameFromFile(file);
                 const item = {
                     id: Util.uid(),
@@ -1221,9 +1278,10 @@ const TWX = (() => {
                     buy: Number(buy),
                     ship: Number(isNaN(ship) ? 0 : ship),
                     sell: Number(isNaN(sell) ? buy : sell),
-                    image: imageData,
+                    image: imageUrl,         // <-- now a Supabase URL
                     createdAt: Date.now(),
                 };
+
 
                 const arr = await Storage.load(KEYS.BOUGHT);
                 arr.unshift(item);
@@ -1699,26 +1757,24 @@ const TWX = (() => {
                     alert("Enter price and select image.");
                     return;
                 }
-                let data = "";
+                let imgUrl = "";
                 try {
-                    data = await Img.compress(file, 1000, 0.7);
-                } catch {
-                    try {
-                        data = await Img.fileToDataURL(file);
-                    } catch {
-                        alert("Image error");
-                        return;
-                    }
+                    imgUrl = await SupaStore.uploadCardImage(file);
+                } catch (err) {
+                    console.warn("Image upload failed; falling back to local dataURL", err);
+                    imgUrl = await Img.compress(file, 1000, 0.7);
                 }
+
                 const arr = await Storage.load(KEYS.FORSALE);
                 arr.unshift({
                     id: Util.uid(),
                     name: Util.deriveNameFromFile(file),
                     price,
-                    image: data,
+                    image: imgUrl,   // <-- Supabase URL
                     buy: 0,
                     seller: "",
                 });
+
                 await Storage.save(KEYS.FORSALE, arr);
                 priceInput.value = "";
                 fileInput.value = "";

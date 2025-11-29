@@ -16,6 +16,13 @@
         <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
         <a href="sold.html" class="site-link" data-page="sold">Sold</a>
     </nav>
+    <nav class="site-nav" role="navigation" aria-label="Primary">
+        <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
+        <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
+        <a href="sold.html" class="site-link" data-page="sold">Sold</a>
+        <a href="cash.html" class="site-link" data-page="cash">Cash</a>
+        <a href="shipping.html" class="site-link" data-page="shipping">Shipping</a>
+    </nav>
 
     <!-- No Cash FAB here since we're already on the cash page -->
 
@@ -100,7 +107,12 @@
         </div>
     </main>
 
+    <!-- Supabase client (UMD build) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Your app JS (must come AFTER the Supabase script) -->
     <script src="twicks.js" defer></script>
+
 </body>
 
 </html>
