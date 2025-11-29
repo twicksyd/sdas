@@ -1255,3 +1255,163 @@ body[data-page="cash"] .grand-total {
         grid-template-columns: 1fr !important;
     }
 }
+/* ==========================================
+   CASH PAGE — FULL DESKTOP + MOBILE RESTORE
+==========================================*/
+
+.cash-page .cash-layout {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 28px;
+    align-items: start;
+    margin-top: 10px;
+}
+
+/* LEFT COLUMN */
+.cash-page .cash-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* RIGHT COLUMN (KPIs) */
+.cash-page .cash-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 90px;
+}
+
+/* KPI Cards */
+.cash-page .kpi {
+    background: rgba(255,255,255,0.03);
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(4px);
+}
+
+.cash-page .kpi.primary .kpi-title { color: #00ff88; }
+.cash-page .kpi.warn .kpi-title { color: #ffad5c; }
+
+.cash-page .kpi-value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.cash-page .kpi-value.small {
+    font-size: 18px;
+}
+
+/* BALANCE ROW (top GCash/SeaBank/Cash/Total) */
+.cash-page .balance-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.cash-page .balance-card {
+    background: rgba(255,255,255,0.03);
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.cash-page .balance-card .balance-label {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 4px;
+}
+
+.cash-page .balance-value {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* ADDLINE (Add/Deduct Row) */
+.cash-page .addline {
+    display: grid;
+    grid-template-columns: 150px 120px 1fr 70px 70px;
+    gap: 10px;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+    padding: 14px 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+}
+
+/* Ensure buttons fit */
+.cash-page .addline .btn {
+    width: 100%;
+}
+
+/* CASH-LIST (transactions) */
+.cash-page .cash-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* TRANSACTION ITEMS */
+.cash-page .cash-row,
+.cash-page .cash-list > div {
+    background: rgba(255,255,255,0.02);
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+
+/* GRAND TOTAL */
+.cash-page .grand-total {
+    padding: 20px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,255,136,0.28);
+    background: rgba(255,255,255,0.02);
+}
+
+/* ===============================
+   MOBILE FIXES (max-width: 900px)
+================================*/
+@media (max-width: 900px) {
+
+    .cash-page .cash-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .cash-page .cash-right {
+        position: static;
+    }
+
+    .cash-page .balance-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cash-page .addline {
+        grid-template-columns: 1fr;
+    }
+
+    .cash-page .addline .btn {
+        width: 100%;
+    }
+}
+
+/* ==================================
+   TIGHTER LAYOUT FOR TRUE MOBILE
+===================================*/
+@media (max-width: 500px) {
+
+    .cash-page .balance-row {
+        grid-template-columns: 1fr;
+    }
+
+    .cash-page .kpi {
+        padding: 14px;
+    }
+
+    .cash-page .grand-total {
+        padding: 16px;
+    }
+}
