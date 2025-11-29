@@ -1091,3 +1091,72 @@ body {
         gap: 0 !important;
     }
 }
+
+/* ============================
+   CASH PAGE — DESKTOP REPAIR
+   ============================ */
+
+body[data-page="cash"] .app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+/* Restore the 2-column layout */
+body[data-page="cash"] .cash-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: 24px !important;
+}
+
+/* Left column (transactions) */
+body[data-page="cash"] .cash-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Right column (KPIs / totals) */
+body[data-page="cash"] .cash-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Balance cards */
+body[data-page="cash"] .balance-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Fix add/deduct line */
+body[data-page="cash"] .addline {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+    padding: 12px;
+    border-radius: 12px;
+    background: #0b1022;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Transaction list spacing */
+body[data-page="cash"] .cash-list .cash-row {
+    padding: 12px;
+    border-radius: 10px;
+}
+
+/* Grand total block */
+body[data-page="cash"] .grand-total {
+    padding: 18px !important;
+    border-radius: 12px;
+}
+
+/* Reset weird unwanted mobile overrides */
+@media (min-width: 769px) {
+    body[data-page="cash"] .btn {
+        width: auto !important;
+    }
+}
