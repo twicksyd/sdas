@@ -2712,3 +2712,93 @@ body:not([data-page="cash"]) .seller:hover {
         overflow-x: hidden !important;
     }
 }
+
+/* ============================================================
+   🛠️ FINAL MOBILE FIX PATCH (Navigation, Topbar, Spacing)
+============================================================ */
+@media (max-width: 768px) {
+
+    /* 1️⃣ Fix NAV — make it slim + clean + non-wrapping */
+    .site-nav {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        height: 52px !important;
+        /* FIX height */
+        padding: 6px 10px !important;
+        /* smaller padding */
+        gap: 6px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        background: rgba(10, 14, 27, 0.92) !important;
+        backdrop-filter: blur(8px) !important;
+
+        overflow-x: auto !important;
+        /* allow horizontal scroll */
+        white-space: nowrap !important;
+
+        z-index: 9999 !important;
+    }
+
+    .site-link {
+        font-size: 12px !important;
+        padding: 6px 10px !important;
+        border-radius: 8px !important;
+        flex: 0 0 auto !important;
+        /* prevents wrapping */
+    }
+
+
+    /* 2️⃣ PUSH DOWN THE PAGE (so nav doesn't cover it) */
+    body {
+        padding-top: 58px !important;
+    }
+
+
+    /* 3️⃣ Fix Topbar block stacking */
+    .topbar {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 12px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+
+    .branding {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Moves "Sign In / Backup / Restore" BELOW the title */
+    .top-right {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        gap: 6px !important;
+        flex-wrap: wrap !important;
+    }
+
+
+    /* 4️⃣ Form area spacing consistency */
+    .add-area {
+        margin-top: 10px !important;
+        padding-top: 0 !important;
+    }
+
+
+    /* 5️⃣ Ensure no horizontal overflow anywhere */
+    html,
+    body {
+        overflow-x: hidden !important;
+        max-width: 100% !important;
+    }
+}
