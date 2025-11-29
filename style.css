@@ -1160,3 +1160,98 @@ body[data-page="cash"] .grand-total {
         width: auto !important;
     }
 }
+
+/* =====================================
+   CASH PAGE — FULL DESKTOP RESTORE
+===================================== */
+
+body[data-page="cash"] .app {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 40px 40px 120px;
+}
+
+/* Restore 2-column layout */
+body[data-page="cash"] .cash-grid {
+    display: grid !important;
+    grid-template-columns: 1.2fr 0.8fr !important;
+    gap: 30px !important;
+    align-items: start !important;
+}
+
+/* LEFT — Transactions, list, addline */
+body[data-page="cash"] .cash-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* RIGHT — Totals panel */
+body[data-page="cash"] .cash-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 90px;
+}
+
+/* Balance header rows */
+body[data-page="cash"] .balance-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding-bottom: 12px;
+}
+
+/* Fix the Add / Deduct line */
+body[data-page="cash"] .addline {
+    display: grid !important;
+    grid-template-columns: 180px 140px 1fr 70px 70px !important;
+    gap: 10px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Buttons inside the line */
+body[data-page="cash"] .addline .btn {
+    width: 100% !important;
+}
+
+/* Transaction cards */
+body[data-page="cash"] .cash-row {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Grand Total box — spacing & glow */
+body[data-page="cash"] .grand-total {
+    padding: 18px 22px !important;
+    border-radius: 12px !important;
+    margin-top: 20px;
+}
+
+/* Mobile override restore */
+@media (max-width:900px) {
+
+    body[data-page="cash"] .app {
+        padding: 20px !important;
+    }
+
+    body[data-page="cash"] .cash-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    body[data-page="cash"] .cash-right {
+        position: static !important;
+    }
+
+    body[data-page="cash"] .addline {
+        grid-template-columns: 1fr !important;
+    }
+}
