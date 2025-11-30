@@ -7,17 +7,13 @@
     <title>Twicks — Inventory</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Google Identity (Drive backup/restore) -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- Supabase client (UMD build) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- Your app JS (must come AFTER the Supabase script) -->
     <script src="twicks.js" defer></script>
-
 </head>
 
-<body>
+<body data-page="inventory"> <!-- ⭐ THIS IS THE FIX ⭐ -->
+
     <nav class="site-nav" role="navigation" aria-label="Primary">
         <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
         <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
