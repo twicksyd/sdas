@@ -2797,18 +2797,18 @@ body[data-page="sold"] main.app {
    ========================================================== */
 
 /* Remove phantom margin/padding after the topbar */
-body[data-page="inventory"] .topbar+* {
+<body data-page="inventory">.topbar+* {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
 
 /* Keep the app area nice and tight like SOLD page */
-body[data-page="inventory"] main.app {
+<body data-page="inventory">main.app {
     padding-top: 40px !important;
 }
 
 /* Compact ADD-AREA (buy/sell/image row) */
-body[data-page="inventory"] .add-area {
+<body data-page="inventory">.add-area {
     margin-top: 10px !important;
     margin-bottom: 20px !important;
     padding: 14px !important;
@@ -2819,18 +2819,18 @@ body[data-page="inventory"] .add-area {
 }
 
 /* Improve spacing of the add-area inputs */
-body[data-page="inventory"] .add-area input,
-body[data-page="inventory"] .add-area select {
+<body data-page="inventory">.add-area input,
+<body data-page="inventory">.add-area select {
     margin: 0 !important;
 }
 
 /* Compact Summary Tab (left side) */
-body[data-page="inventory"] #summaryTab {
+<body data-page="inventory">#summaryTab {
     top: 160px !important;
 }
 
 /* Make seller container flush with top */
-body[data-page="inventory"] .seller-container {
+<body data-page="inventory">.seller-container {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
