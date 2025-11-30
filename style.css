@@ -2748,3 +2748,63 @@ body[data-page="sold"] .status-pill.pending {
     border-color: rgba(255, 120, 80, 0.9);
     color: #ffd2d2;
 }
+
+/* ===== FIX TOP GAP ON SOLD PAGE ===== */
+body[data-page="sold"] .topbar+* {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Remove extra spacing above the backup/sign-in buttons row */
+body[data-page="sold"] .top-actions,
+body[data-page="sold"] .greet-picker,
+body[data-page="sold"] #summaryTabSold {
+    margin-top: 0 !important;
+}
+
+body[data-page="sold"] main.app {
+    padding-top: 40px !important;
+    /* normal spacing */
+}
+/* ==========================================================
+   INVENTORY PAGE — REMOVE TOP GAP + MATCH SOLD PAGE SPACING
+   ========================================================== */
+
+/* Remove phantom margin/padding after the topbar */
+body[data-page="inventory"] .topbar + * {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Keep the app area nice and tight like SOLD page */
+body[data-page="inventory"] main.app {
+    padding-top: 40px !important;
+}
+
+/* Compact ADD-AREA (buy/sell/image row) */
+body[data-page="inventory"] .add-area {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    padding: 14px !important;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,255,180,0.15);
+    backdrop-filter: blur(4px);
+}
+
+/* Improve spacing of the add-area inputs */
+body[data-page="inventory"] .add-area input,
+body[data-page="inventory"] .add-area select {
+    margin: 0 !important;
+}
+
+/* Compact Summary Tab (left side) */
+body[data-page="inventory"] #summaryTab {
+    top: 160px !important;
+}
+
+/* Make seller container flush with top */
+body[data-page="inventory"] .seller-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
