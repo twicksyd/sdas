@@ -2346,3 +2346,405 @@ body[data-page="cash"] .grand-total {
 .cash-page .btn.secondary:hover::after {
     animation: btnShine 0.7s ease-out forwards;
 }
+
+/* =========================================================
+   TWICKS — INVENTORY & SOLD NEON THEME (BLUE → MAGENTA)
+   Scope: body[data-page="inventory"], body[data-page="sold"]
+   Safe for mobile / other pages
+========================================================= */
+
+/* ---------- Shared keyframes ---------- */
+
+@keyframes twxFadeUpSoft {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+        filter: blur(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes twxNeonSweep {
+    0% {
+        transform: translateX(-120%);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+/* subtle game-style pulse on hover */
+@keyframes twxCardPulseHover {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 0 rgba(0, 212, 255, 0.0);
+    }
+
+    40% {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 0 14px rgba(0, 212, 255, 0.45);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 0 rgba(0, 212, 255, 0.0);
+    }
+}
+
+/* A slow breathing glow for whole panels */
+@keyframes twxPanelBreath {
+    0% {
+        box-shadow: 0 0 0 rgba(255, 45, 242, 0.0);
+    }
+
+    50% {
+        box-shadow: 0 0 26px rgba(0, 212, 255, 0.26);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(255, 45, 242, 0.0);
+    }
+}
+
+/* little shimmer for headers */
+@keyframes twxTitleGlow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 6px rgba(0, 212, 255, 0.55);
+    }
+
+    50% {
+        text-shadow: 0 0 18px rgba(255, 45, 242, 0.75);
+    }
+}
+
+/* =========================================================
+   INVENTORY PAGE (index.html) — BLUE / MAGENTA NEON
+========================================================= */
+
+body[data-page="inventory"] .app {
+    animation: twxFadeUpSoft 0.55s ease-out;
+}
+
+/* Top title glow */
+body[data-page="inventory"] .topbar h1 {
+    position: relative;
+    animation: twxTitleGlow 3s ease-in-out infinite;
+}
+
+/* Summary sidebar styling */
+body[data-page="inventory"] .summary-panel {
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.35), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 45, 242, 0.32), transparent 55%),
+        rgba(6, 8, 18, 0.96);
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    box-shadow: 0 18px 40px rgba(2, 10, 24, 0.9);
+    position: relative;
+    overflow: hidden;
+}
+
+body[data-page="inventory"] .summary-panel::before {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    background: linear-gradient(120deg, rgba(0, 212, 255, 0.18), rgba(255, 45, 242, 0.16));
+    transform: translateX(-120%);
+    animation: twxNeonSweep 6s linear infinite;
+    pointer-events: none;
+}
+
+/* Summary stat cards — per-box color */
+body[data-page="inventory"] .summary-stats .stat {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(8, 10, 20, 0.9);
+    backdrop-filter: blur(4px);
+}
+
+/* moving inner glow */
+body[data-page="inventory"] .summary-stats .stat::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    opacity: 0.2;
+    background: radial-gradient(circle at top, rgba(0, 212, 255, 0.9), transparent 60%);
+    mix-blend-mode: screen;
+    animation: twxNeonSweep 7s linear infinite;
+}
+
+/* Total Cards = electric blue */
+body[data-page="inventory"] .summary-stats .stat:nth-child(1) {
+    border-color: rgba(0, 212, 255, 0.6);
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.35), transparent 55%),
+        rgba(6, 10, 22, 0.96);
+}
+
+/* Total Spent = magenta */
+body[data-page="inventory"] .summary-stats .stat:nth-child(2) {
+    border-color: rgba(255, 45, 242, 0.55);
+    background: radial-gradient(circle at top left, rgba(255, 45, 242, 0.35), transparent 55%),
+        rgba(10, 6, 20, 0.96);
+}
+
+/* Total Worth = teal */
+body[data-page="inventory"] .summary-stats .stat:nth-child(3) {
+    border-color: rgba(0, 255, 191, 0.55);
+    background: radial-gradient(circle at top left, rgba(0, 255, 191, 0.32), transparent 55%),
+        rgba(6, 18, 16, 0.96);
+}
+
+/* Total Profit = dual color */
+body[data-page="inventory"] .summary-stats .stat:nth-child(4) {
+    border-color: rgba(0, 255, 136, 0.7);
+    background: radial-gradient(circle at top left, rgba(0, 255, 136, 0.36), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 45, 110, 0.33), transparent 55%),
+        rgba(8, 10, 18, 0.96);
+}
+
+/* Seller blocks (big grouped panels) */
+body[data-page="inventory"] .seller.panel {
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.22), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255, 45, 242, 0.18), transparent 60%),
+        rgba(10, 10, 18, 0.98);
+    border-radius: 14px;
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    animation: twxPanelBreath 4.5s ease-in-out infinite;
+}
+
+/* stagger entrance for each seller block */
+body[data-page="inventory"] .seller-container .seller.panel {
+    animation: twxFadeUpSoft 0.55s ease-out backwards,
+        twxPanelBreath 4.5s ease-in-out infinite;
+}
+
+body[data-page="inventory"] .seller-container .seller.panel:nth-child(1) {
+    animation-delay: 0.05s, 0s;
+}
+
+body[data-page="inventory"] .seller-container .seller.panel:nth-child(2) {
+    animation-delay: 0.12s, 0s;
+}
+
+body[data-page="inventory"] .seller-container .seller.panel:nth-child(3) {
+    animation-delay: 0.18s, 0s;
+}
+
+/* Cards inside inventory sellers */
+body[data-page="inventory"] .seller .card {
+    background: radial-gradient(circle at top, rgba(0, 212, 255, 0.18), transparent 60%),
+        rgba(10, 12, 22, 0.98);
+    border-radius: 14px;
+    border: 1px solid rgba(0, 212, 255, 0.32);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease,
+        background 0.18s ease;
+    overflow: hidden;
+}
+
+/* The pulse on hover (game selection feel) */
+body[data-page="inventory"] .seller .card:hover {
+    border-color: rgba(255, 45, 242, 0.8);
+    background: radial-gradient(circle at top, rgba(255, 45, 242, 0.18), transparent 60%),
+        rgba(8, 10, 20, 0.98);
+    animation: twxCardPulseHover 0.9s ease-in-out;
+}
+
+/* Images inside cards: tiny zoom on hover */
+body[data-page="inventory"] .seller .card .img-wrap img {
+    transition: transform 0.25s ease;
+}
+
+body[data-page="inventory"] .seller .card:hover .img-wrap img {
+    transform: scale(1.04);
+}
+
+/* Profit pill highlight */
+body[data-page="inventory"] .seller .status-pill.paid {
+    border-color: rgba(0, 255, 160, 0.8);
+    background: radial-gradient(circle at top, rgba(0, 255, 160, 0.4), transparent 60%),
+        rgba(3, 18, 12, 0.96);
+}
+
+body[data-page="inventory"] .seller .status-pill.pending {
+    border-color: rgba(255, 90, 140, 0.8);
+    background: radial-gradient(circle at top, rgba(255, 90, 140, 0.4), transparent 60%),
+        rgba(22, 6, 14, 0.96);
+}
+
+/* Mini seller list inside summary */
+body[data-page="inventory"] .summary-sellers .seller-mini {
+    background: radial-gradient(circle at left, rgba(0, 212, 255, 0.25), transparent 70%),
+        rgba(8, 12, 24, 0.96);
+    border: 1px solid rgba(0, 212, 255, 0.32);
+}
+
+/* =========================================================
+   SOLD PAGE (sold.html) — BLUE / MAGENTA NEON
+========================================================= */
+
+body[data-page="sold"] .app {
+    animation: twxFadeUpSoft 0.55s ease-out;
+}
+
+/* Top title neon shimmer */
+body[data-page="sold"] .topbar h1 {
+    position: relative;
+    animation: twxTitleGlow 3s ease-in-out infinite;
+}
+
+/* Sold Summary sidebar */
+body[data-page="sold"] .summary-panel {
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.3), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 45, 242, 0.28), transparent 60%),
+        rgba(6, 8, 18, 0.96);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.9);
+    position: relative;
+    overflow: hidden;
+}
+
+body[data-page="sold"] .summary-panel::before {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    background: linear-gradient(120deg, rgba(0, 212, 255, 0.2), rgba(255, 45, 242, 0.18));
+    transform: translateX(-120%);
+    animation: twxNeonSweep 6.5s linear infinite;
+}
+
+/* Sold summary stat blocks color-coded */
+body[data-page="sold"] .summary-stats .stat {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 10, 20, 0.96);
+}
+
+/* Total Sold */
+body[data-page="sold"] .summary-stats .stat:nth-child(1) {
+    border-color: rgba(0, 212, 255, 0.6);
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.34), transparent 55%),
+        rgba(6, 10, 22, 0.96);
+}
+
+/* Paid revenue */
+body[data-page="sold"] .summary-stats .stat:nth-child(2) {
+    border-color: rgba(0, 255, 160, 0.7);
+    background: radial-gradient(circle at top left, rgba(0, 255, 160, 0.35), transparent 55%),
+        rgba(6, 20, 14, 0.96);
+}
+
+/* Pending revenue */
+body[data-page="sold"] .summary-stats .stat:nth-child(3) {
+    border-color: rgba(255, 120, 80, 0.9);
+    background: radial-gradient(circle at top left, rgba(255, 120, 80, 0.38), transparent 55%),
+        rgba(24, 10, 10, 0.96);
+}
+
+/* Paid count */
+body[data-page="sold"] .summary-stats .stat:nth-child(4) {
+    border-color: rgba(0, 255, 160, 0.7);
+    background: radial-gradient(circle at top left, rgba(0, 255, 160, 0.3), transparent 55%),
+        rgba(6, 18, 14, 0.96);
+}
+
+/* Pending count */
+body[data-page="sold"] .summary-stats .stat:nth-child(5) {
+    border-color: rgba(255, 90, 140, 0.8);
+    background: radial-gradient(circle at top left, rgba(255, 90, 140, 0.32), transparent 55%),
+        rgba(22, 8, 16, 0.96);
+}
+
+/* Buyer blocks */
+body[data-page="sold"] .buyer-block.panel {
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.25), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(255, 45, 242, 0.25), transparent 60%),
+        rgba(8, 10, 20, 0.98);
+    border-radius: 14px;
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    animation: twxPanelBreath 4.5s ease-in-out infinite;
+}
+
+/* Fully paid buyers get a greener tint */
+body[data-page="sold"] .buyer-block.panel.paid {
+    background: radial-gradient(circle at top left, rgba(0, 255, 160, 0.28), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(0, 212, 255, 0.2), transparent 60%),
+        rgba(6, 16, 14, 0.98);
+    border-color: rgba(0, 255, 160, 0.7);
+}
+
+/* Staggered entrance for buyer blocks */
+body[data-page="sold"] .sold-container .buyer-block.panel {
+    animation: twxFadeUpSoft 0.55s ease-out backwards,
+        twxPanelBreath 4.5s ease-in-out infinite;
+}
+
+body[data-page="sold"] .sold-container .buyer-block.panel:nth-child(1) {
+    animation-delay: 0.05s, 0s;
+}
+
+body[data-page="sold"] .sold-container .buyer-block.panel:nth-child(2) {
+    animation-delay: 0.12s, 0s;
+}
+
+body[data-page="sold"] .sold-container .buyer-block.panel:nth-child(3) {
+    animation-delay: 0.18s, 0s;
+}
+
+/* Cards inside Sold (per item) */
+body[data-page="sold"] .buyer-cards .card {
+    background: radial-gradient(circle at top, rgba(0, 212, 255, 0.18), transparent 60%),
+        rgba(10, 12, 22, 0.98);
+    border-radius: 14px;
+    border: 1px solid rgba(0, 212, 255, 0.32);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.65);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease,
+        background 0.18s ease;
+}
+
+/* Hover pulse */
+body[data-page="sold"] .buyer-cards .card:hover {
+    border-color: rgba(255, 45, 242, 0.85);
+    background: radial-gradient(circle at top, rgba(255, 45, 242, 0.2), transparent 60%),
+        rgba(8, 10, 20, 0.98);
+    animation: twxCardPulseHover 0.9s ease-in-out;
+}
+
+body[data-page="sold"] .buyer-cards .card .img-wrap img {
+    transition: transform 0.25s ease;
+}
+
+body[data-page="sold"] .buyer-cards .card:hover .img-wrap img {
+    transform: scale(1.04);
+}
+
+/* Status pills (Paid / Pending) */
+body[data-page="sold"] .status-pill.paid {
+    background: radial-gradient(circle at top, rgba(0, 255, 160, 0.4), transparent 60%),
+        rgba(4, 18, 10, 0.98);
+    border-color: rgba(0, 255, 160, 0.9);
+    color: #c5ffe6;
+}
+
+body[data-page="sold"] .status-pill.pending {
+    background: radial-gradient(circle at top, rgba(255, 120, 80, 0.4), transparent 60%),
+        rgba(24, 10, 12, 0.98);
+    border-color: rgba(255, 120, 80, 0.9);
+    color: #ffd2d2;
+}
