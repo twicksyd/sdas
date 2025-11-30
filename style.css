@@ -2622,18 +2622,18 @@ body[data-page="inventory"] .summary-sellers .seller-mini {
    SOLD PAGE (sold.html) — BLUE / MAGENTA NEON
 ========================================================= */
 
-body[data-page="sold"] .app {
+<body data-page="sold">.app {
     animation: twxFadeUpSoft 0.55s ease-out;
 }
 
 /* Top title neon shimmer */
-body[data-page="sold"] .topbar h1 {
+<body data-page="sold">.topbar h1 {
     position: relative;
     animation: twxTitleGlow 3s ease-in-out infinite;
 }
 
 /* Sold Summary sidebar */
-body[data-page="sold"] .summary-panel {
+<body data-page="sold">.summary-panel {
     background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.3), transparent 55%),
         radial-gradient(circle at bottom right, rgba(255, 45, 242, 0.28), transparent 60%),
         rgba(6, 8, 18, 0.96);
@@ -2643,7 +2643,7 @@ body[data-page="sold"] .summary-panel {
     overflow: hidden;
 }
 
-body[data-page="sold"] .summary-panel::before {
+<body data-page="sold">.summary-panel::before {
     content: "";
     position: absolute;
     inset: -60%;
@@ -2653,7 +2653,7 @@ body[data-page="sold"] .summary-panel::before {
 }
 
 /* Sold summary stat blocks color-coded */
-body[data-page="sold"] .summary-stats .stat {
+<body data-page="sold">.summary-stats .stat {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
