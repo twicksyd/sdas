@@ -2157,3 +2157,192 @@ body[data-page="cash"] .grand-total {
 .cash-page .grand-total:hover {
     box-shadow: 0 0 32px rgba(255, 255, 255, 0.35);
 }
+
+/* ==========================================================
+   TWICKS — CASH PAGE ANIME ENTRANCE PACK (MODE E)
+   (Fully scoped to .cash-page, JS-safe)
+   ========================================================== */
+
+/* Flashy page intro */
+@keyframes animeFlashIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.96) translateY(10px);
+        filter: blur(6px);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1.03) translateY(0);
+        filter: blur(0);
+        box-shadow: 0 0 24px rgba(255, 255, 255, 0.28);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    }
+}
+
+/* Slide-up + fade for sections */
+@keyframes animeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Slight pop for cards (anime “card reveal”) */
+@keyframes animePop {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.06);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Shiny swipe on buttons */
+@keyframes btnShine {
+    0% {
+        transform: translateX(-120%);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(140%);
+        opacity: 0;
+    }
+}
+
+/* Soft breathing glow for Grand Total */
+@keyframes softBreath {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 255, 160, 0.18);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(0, 255, 200, 0.45);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(0, 255, 160, 0.18);
+    }
+}
+
+/* ==========================================================
+   APPLY ANIME ANIMATIONS (CASH PAGE ONLY)
+   ========================================================== */
+
+/* Whole cash app “fade in like opening a menu” */
+.cash-page .cash-layout {
+    animation: animeFlashIn 0.75s cubic-bezier(.17, .84, .44, 1) both;
+}
+
+/* Top balance row: staggered slide-up */
+.cash-page .balance-card {
+    animation: animeSlideUp 0.7s ease-out both;
+}
+
+.cash-page .balance-card:nth-child(1) {
+    animation-delay: 0.10s;
+}
+
+.cash-page .balance-card:nth-child(2) {
+    animation-delay: 0.16s;
+}
+
+.cash-page .balance-card:nth-child(3) {
+    animation-delay: 0.22s;
+}
+
+.cash-page .balance-card:nth-child(4) {
+    animation-delay: 0.28s;
+}
+
+/* Add/Deduct line pops in */
+.cash-page .addline {
+    animation: animePop 0.65s ease-out 0.38s both;
+}
+
+/* Cash rows (transactions) slide in softly */
+.cash-page .cash-list .cash-row {
+    animation: animeSlideUp 0.5s ease-out 0.55s both;
+}
+
+/* KPI cards on the right side — staggered anime pops */
+.cash-page .cash-right .kpi {
+    animation: animePop 0.7s ease-out both;
+}
+
+.cash-page .cash-right .kpi:nth-child(1) {
+    animation-delay: 0.45s;
+}
+
+.cash-page .cash-right .kpi:nth-child(2) {
+    animation-delay: 0.55s;
+}
+
+.cash-page .cash-right .kpi:nth-child(3) {
+    animation-delay: 0.65s;
+}
+
+/* Grand total: hero breathing glow + late entrance */
+.cash-page .grand-total {
+    animation:
+        animePop 0.75s ease-out 0.8s backwards,
+        softBreath 5.5s ease-in-out 1.6s infinite;
+}
+
+/* ==========================================================
+   BUTTON SHINE EFFECTS (CASH PAGE ONLY)
+   ========================================================== */
+
+.cash-page .btn.primary,
+.cash-page .btn.secondary {
+    position: relative;
+    overflow: hidden;
+}
+
+/* sliding “shine” strip */
+.cash-page .btn.primary::after,
+.cash-page .btn.secondary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    left: -120%;
+    background: linear-gradient(120deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.35),
+            rgba(255, 255, 255, 0.05));
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+
+/* trigger shine on hover */
+.cash-page .btn.primary:hover::after,
+.cash-page .btn.secondary:hover::after {
+    animation: btnShine 0.7s ease-out forwards;
+}
