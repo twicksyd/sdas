@@ -23,6 +23,31 @@ html {
     font-size: 16px;
 }
 
+/* ==========================================
+   GLOBAL FIX — REMOVE TOP GAP / EXTRA SCROLL
+========================================== */
+
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior-y: none;
+}
+
+/* Prevent neon pseudo backgrounds from pushing layout */
+body::before,
+body::after {
+    display: block;
+    position: absolute;
+    content: "";
+    inset: 0;
+    pointer-events: none;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -2766,12 +2791,13 @@ body[data-page="sold"] main.app {
     padding-top: 40px !important;
     /* normal spacing */
 }
+
 /* ==========================================================
    INVENTORY PAGE — REMOVE TOP GAP + MATCH SOLD PAGE SPACING
    ========================================================== */
 
 /* Remove phantom margin/padding after the topbar */
-body[data-page="inventory"] .topbar + * {
+body[data-page="inventory"] .topbar+* {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
@@ -2787,8 +2813,8 @@ body[data-page="inventory"] .add-area {
     margin-bottom: 20px !important;
     padding: 14px !important;
     border-radius: 12px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(0,255,180,0.15);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 255, 180, 0.15);
     backdrop-filter: blur(4px);
 }
 
