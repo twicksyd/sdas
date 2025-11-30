@@ -1190,14 +1190,14 @@ body[data-page="cash"] .grand-total {
     }
 }
 
-/* =====================================
-   CASH PAGE — FULL DESKTOP RESTORE
-===================================== */
+body[data-page="sold"] .app {
+    animation: twxFadeUpSoft 0.55s ease-out;
+}
 
-body[data-page="cash"] .app {
-    max-width: 1350px;
-    margin: 0 auto;
-    padding: 40px 40px 120px;
+/* Top title neon shimmer */
+body[data-page="sold"] .topbar h1 {
+    position: relative;
+    animation: twxTitleGlow 3s ease-in-out infinite;
 }
 
 /* Restore 2-column layout */
@@ -2627,7 +2627,7 @@ body[data-page="sold"] .app {
 }
 
 /* Top title neon shimmer */
-<body data-page="sold">.topbar h1 {
+body[data-page="sold"] .topbar h1 {
     position: relative;
     animation: twxTitleGlow 3s ease-in-out infinite;
 }
