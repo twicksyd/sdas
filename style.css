@@ -1194,7 +1194,7 @@ body[data-page="cash"] .grand-total {
    CASH PAGE — FULL DESKTOP RESTORE
 ===================================== */
 
-<body data-page="cash">.app {
+body[data-page="cash"] .app {
     max-width: 1350px;
     margin: 0 auto;
     padding: 40px 40px 120px;
@@ -2622,7 +2622,7 @@ body[data-page="inventory"] .summary-sellers .seller-mini {
    SOLD PAGE (sold.html) — BLUE / MAGENTA NEON
 ========================================================= */
 
-<body data-page="sold">.app {
+body[data-page="sold"] .app {
     animation: twxFadeUpSoft 0.55s ease-out;
 }
 
@@ -2632,28 +2632,28 @@ body[data-page="inventory"] .summary-sellers .seller-mini {
     animation: twxTitleGlow 3s ease-in-out infinite;
 }
 
-/* Sold Summary sidebar */
-<body data-page="sold">.summary-panel {
-    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.3), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255, 45, 242, 0.28), transparent 60%),
+/* SOLD summary panel matches INVENTORY style */
+body[data-page="sold"] .summary-panel {
+    background: radial-gradient(circle at top left, rgba(0, 212, 255, 0.35), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 45, 242, 0.32), transparent 55%),
         rgba(6, 8, 18, 0.96);
-    border: 1px solid rgba(0, 212, 255, 0.4);
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.9);
-    position: relative;
-    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    box-shadow: 0 18px 40px rgba(2, 10, 24, 0.9);
 }
 
-<body data-page="sold">.summary-panel::before {
+body[data-page="sold"] .summary-panel::before {
     content: "";
     position: absolute;
     inset: -60%;
-    background: linear-gradient(120deg, rgba(0, 212, 255, 0.2), rgba(255, 45, 242, 0.18));
+    background: linear-gradient(120deg, rgba(0, 212, 255, 0.18), rgba(255, 45, 242, 0.16));
     transform: translateX(-120%);
-    animation: twxNeonSweep 6.5s linear infinite;
+    animation: twxNeonSweep 6s linear infinite;
+    pointer-events: none;
 }
 
+
 /* Sold summary stat blocks color-coded */
-<body data-page="sold">.summary-stats .stat {
+body[data-page="sold"] .summary-stats .stat {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
@@ -2793,22 +2793,20 @@ body[data-page="sold"] main.app {
 }
 
 /* ==========================================================
-   INVENTORY PAGE — REMOVE TOP GAP + MATCH SOLD PAGE SPACING
-   ========================================================== */
+   INVENTORY PAGE — Remove Top Gap + Match SOLD spacing
+========================================================== */
 
-/* Remove phantom margin/padding after the topbar */
-<body data-page="inventory">.topbar+* {
+body[data-page="inventory"] .topbar+* {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
 
-/* Keep the app area nice and tight like SOLD page */
-<body data-page="inventory">main.app {
+body[data-page="inventory"] main.app {
     padding-top: 40px !important;
 }
 
-/* Compact ADD-AREA (buy/sell/image row) */
-<body data-page="inventory">.add-area {
+/* Better add-area style */
+body[data-page="inventory"] .add-area {
     margin-top: 10px !important;
     margin-bottom: 20px !important;
     padding: 14px !important;
@@ -2818,19 +2816,18 @@ body[data-page="sold"] main.app {
     backdrop-filter: blur(4px);
 }
 
-/* Improve spacing of the add-area inputs */
-<body data-page="inventory">.add-area input,
-<body data-page="inventory">.add-area select {
+/* Clean spacing inside add-area */
+body[data-page="inventory"] .add-area input,
+body[data-page="inventory"] .add-area select {
     margin: 0 !important;
 }
 
-/* Compact Summary Tab (left side) */
-<body data-page="inventory">#summaryTab {
+/* Summary tab reposition */
+body[data-page="inventory"] #summaryTab {
     top: 160px !important;
 }
 
-/* Make seller container flush with top */
-<body data-page="inventory">.seller-container {
+body[data-page="inventory"] .seller-container {
     margin-top: 0 !important;
     padding-top: 0 !important;
 }
