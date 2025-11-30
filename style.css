@@ -1629,3 +1629,170 @@ body[data-page="cash"] .grand-total {
         max-height: none;
     }
 }
+
+/* ============================================================
+   TWICKS — CASH PAGE "DARK CRYSTAL" THEME (Teal + Rose Gold)
+   ============================================================ */
+
+:root {
+    --crystal-teal: #00d7c0;
+    --crystal-teal-glow: rgba(0, 215, 192, 0.35);
+
+    --crystal-rose: #ffb98f;
+    --crystal-rose-glow: rgba(255, 185, 143, 0.35);
+
+    --crystal-bg-panel: rgba(255, 255, 255, 0.04);
+    --crystal-bg-highlight: rgba(255, 255, 255, 0.06);
+}
+
+/* ----------------------------------------------
+   TOP BALANCES — Crystal gradient borders
+---------------------------------------------- */
+.cash-page .balance-card {
+    position: relative;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: var(--crystal-bg-panel);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.cash-page .balance-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 14px;
+    padding: 1px;
+    background: linear-gradient(130deg,
+            var(--crystal-teal),
+            var(--crystal-rose));
+    opacity: 0.25;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* TOTAL gets stronger glow */
+.cash-page .balance-card.total::before {
+    opacity: 0.38;
+}
+
+/* ----------------------------------------------
+   ADDLINE — Crystal glow bar
+---------------------------------------------- */
+.cash-page .addline {
+    background: var(--crystal-bg-panel);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    border-radius: 14px;
+}
+
+.cash-page .addline::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 14px;
+    padding: 1px;
+    background: linear-gradient(135deg,
+            var(--crystal-rose),
+            var(--crystal-teal));
+    opacity: 0.20;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+/* Buttons inside addline */
+.cash-page .addline button.btn.primary {
+    background: linear-gradient(90deg, var(--crystal-teal), var(--crystal-rose));
+    color: #041013;
+    font-weight: 800;
+}
+
+.cash-page .addline button.btn.secondary {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ----------------------------------------------
+   CASH ROWS — Crystal borders
+---------------------------------------------- */
+.cash-page .cash-list>div {
+    background: rgba(12, 14, 16, 0.55);
+    border-radius: 12px;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    transition: 0.18s ease;
+}
+
+.cash-page .cash-list>div:hover {
+    border-color: var(--crystal-teal-glow);
+    box-shadow: 0 6px 15px rgba(0, 217, 192, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ----------------------------------------------
+   KPIs — Crystal premium panels
+---------------------------------------------- */
+.cash-page .kpi {
+    background: var(--crystal-bg-panel);
+    border-radius: 16px;
+    padding: 18px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Paid Revenue — Teal highlight */
+.cash-page .kpi.primary {
+    border-color: var(--crystal-teal-glow);
+}
+
+.cash-page .kpi.primary .kpi-title {
+    color: var(--crystal-teal);
+}
+
+/* Pending Revenue — Rose gold */
+.cash-page .kpi.warn {
+    border-color: var(--crystal-rose-glow);
+}
+
+.cash-page .kpi.warn .kpi-title {
+    color: var(--crystal-rose);
+}
+
+/* ----------------------------------------------
+   GRAND TOTAL — Crystal glow box
+---------------------------------------------- */
+.cash-page .grand-total {
+    background: var(--crystal-bg-panel);
+    border-radius: 16px;
+    padding: 22px 26px;
+    border: 1px solid var(--crystal-teal-glow);
+    box-shadow: 0 8px 28px rgba(0, 217, 192, 0.15);
+}
+
+.cash-page .grand-total .title {
+    color: var(--crystal-teal);
+    font-weight: 800;
+}
+
+.cash-page .grand-total .grand-value {
+    color: var(--crystal-teal);
+    font-size: 28px;
+}
+
+/* ----------------------------------------------
+   Selects & inputs
+---------------------------------------------- */
+.cash-page select,
+.cash-page input {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e8fefb;
+}
+
+.cash-page select:focus,
+.cash-page input:focus {
+    outline: 1px solid var(--crystal-teal);
+    box-shadow: 0 0 8px var(--crystal-teal-glow);
+}
