@@ -201,6 +201,10 @@ const TWX = (() => {
     /* =========================================
        IMAGE HELPERS (compression)
     ========================================= */
+    /* =========================================
+       IMAGE HELPERS (compression)
+    ========================================= */
+
     const Img = {
         fileToDataURL(file) {
             return new Promise((res, rej) => {
@@ -208,69 +212,10 @@ const TWX = (() => {
                 r.onload = () => res(r.result);
                 r.onerror = rej;
                 r.readAsDataURL(file);
-                /* =========================================
-   SUPABASE STORAGE (images in bucket "cards")
-========================================= */
-                const SUPABASE_URL = "https://zqbkuwrwgvfhkajsebfo.supabase.co";   // <-- paste from Supabase
-                const SUPABASE_ANON_KEY = "YeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxYmt1d3J3Z3ZmaGthanNlYmZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI2NDU3NDMsImV4cCI6MjA3ODIyMTc0M30.7XUv5Q_BsNRrJ5vFqOPQmdNIIhNSvEFO_0jX_Kp9VRk";              // <-- paste from Supabase
-                const SUPABASE_BUCKET = "cards";
-
-                const SupaStore = (() => {
-                    let client = null;
-
-                    function getClient() {
-                        if (!window.supabase) {
-                            console.warn("[Twicks] supabase-js not loaded; using local dataURL fallback.");
-                            return null;
-                        }
-                        if (!client) {
-                            const { createClient } = window.supabase;
-                            client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                        }
-                        return client;
-                    }
-
-                    async function uploadCardImage(file) {
-                        const supa = getClient();
-                        if (!supa) {
-                            // No Supabase? still work, but images stay in local storage
-                            const dataUrl = await Img.compress(file, 1000, 0.7);
-                            return dataUrl;
-                        }
-
-                        // 1) Compress to a dataURL (smaller than raw phone image)
-                        const dataUrl = await Img.compress(file, 1200, 0.8);
-                        const blob = await (await fetch(dataUrl)).blob();
-
-                        const ext = blob.type === "image/webp" ? "webp" : "jpg";
-                        const path = `cards/${Date.now()}_${Math.random()
-                            .toString(36)
-                            .slice(2)}.${ext}`;
-
-                        const { error } = await supa.storage
-                            .from(SUPABASE_BUCKET)
-                            .upload(path, blob, {
-                                cacheControl: "3600",
-                                upsert: false,
-                                contentType: blob.type,
-                            });
-
-                        if (error) {
-                            console.warn("[Twicks] Supabase upload failed; falling back to local dataURL", error);
-                            return dataUrl; // fallback: inline dataURL (old behavior)
-                        }
-
-                        const { data } = supa.storage.from(SUPABASE_BUCKET).getPublicUrl(path);
-                        return data?.publicUrl || dataUrl;
-                    }
-
-                    return { uploadCardImage };
-                })();
-
             });
         },
+
         async compress(file, maxDim = 1000, quality = 0.7) {
-            // Try createImageBitmap + OffscreenCanvas for speed; fallback to canvas.
             try {
                 const bmp = await createImageBitmap(file);
                 const scale = Math.min(maxDim / Math.max(bmp.width, bmp.height), 1);
@@ -282,6 +227,7 @@ const TWX = (() => {
                     canvas = new OffscreenCanvas(nw, nh);
                     ctx = canvas.getContext("2d", { alpha: false });
                     ctx.drawImage(bmp, 0, 0, nw, nh);
+
                     let blob =
                         (await canvas.convertToBlob({
                             type: "image/webp",
@@ -291,42 +237,53 @@ const TWX = (() => {
                             type: "image/jpeg",
                             quality,
                         }).catch(() => null));
+
                     if (!blob) throw new Error("Blob conversion failed");
                     return await Img.blobToDataURL(blob);
+
                 } else {
                     const c = document.createElement("canvas");
                     c.width = nw;
                     c.height = nh;
                     const c2d = c.getContext("2d", { alpha: false });
                     c2d.drawImage(bmp, 0, 0, nw, nh);
+
                     let out =
                         c.toDataURL("image/webp", quality) ||
                         c.toDataURL("image/jpeg", quality);
+
                     return out;
                 }
+
             } catch {
-                // plain canvas fallback for non-bitmap paths or heic
+                // fallback: load normally then resize
                 const dataUrl = await Img.fileToDataURL(file);
+
                 const img = await new Promise((res, rej) => {
                     const i = new Image();
                     i.onload = () => res(i);
                     i.onerror = rej;
                     i.src = dataUrl;
                 });
+
                 const scale = Math.min(maxDim / Math.max(img.naturalWidth, img.naturalHeight), 1);
                 const nw = Math.round(img.naturalWidth * scale);
                 const nh = Math.round(img.naturalHeight * scale);
+
                 const c = document.createElement("canvas");
                 c.width = nw;
                 c.height = nh;
                 c.getContext("2d", { alpha: false }).drawImage(img, 0, 0, nw, nh);
+
                 let out =
                     c.toDataURL("image/webp", quality) ||
                     c.toDataURL("image/jpeg", quality);
+
                 if (!out || !out.startsWith("data:image/")) out = dataUrl;
                 return out;
             }
         },
+
         blobToDataURL(blob) {
             return new Promise((resolve, reject) => {
                 const r = new FileReader();
@@ -336,6 +293,62 @@ const TWX = (() => {
             });
         },
     };
+    /* =========================================
+       SUPABASE STORAGE (images in bucket "cards")
+    ========================================= */
+
+    const SUPABASE_URL = "https://zqbkuwrwgvfhkajsebfo.supabase.co";
+    const SUPABASE_ANON_KEY = "YeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...";
+    const SUPABASE_BUCKET = "cards";
+
+    const SupaStore = (() => {
+        let client = null;
+
+        function getClient() {
+            if (!window.supabase) {
+                console.warn("[Twicks] supabase-js not loaded; using local dataURL fallback.");
+                return null;
+            }
+            if (!client) {
+                const { createClient } = window.supabase;
+                client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+            return client;
+        }
+
+        async function uploadCardImage(file) {
+            const supa = getClient();
+
+            // Fallback to local storage if Supabase not loaded
+            if (!supa) return await Img.compress(file, 1000, 0.7);
+
+            // 1) Compress image
+            const dataUrl = await Img.compress(file, 1200, 0.8);
+            const blob = await (await fetch(dataUrl)).blob();
+
+            const ext = blob.type === "image/webp" ? "webp" : "jpg";
+            const path = `cards/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
+
+            const { error } = await supa.storage
+                .from(SUPABASE_BUCKET)
+                .upload(path, blob, {
+                    cacheControl: "3600",
+                    upsert: false,
+                    contentType: blob.type,
+                });
+
+            if (error) {
+                console.warn("[Twicks] Supabase upload failed; using local fallback", error);
+                return dataUrl;
+            }
+
+            const { data } = supa.storage.from(SUPABASE_BUCKET).getPublicUrl(path);
+            return data?.publicUrl || dataUrl;
+        }
+
+        return { uploadCardImage };
+    })();
+
 
     /* =========================================
        GOOGLE DRIVE (GIS + Drive v3)
