@@ -1795,3 +1795,365 @@ body[data-page="cash"] .grand-total {
     background: rgba(255, 255, 255, 0.04) !important;
     border-color: rgba(255, 255, 255, 0.10) !important;
 }
+
+/* ==========================================================
+   TWICKS CASH — FULL NEON ANIMATED THEME
+   Safe, modernized, and does not break layout
+   ========================================================== */
+
+/* Neon Glow Animation */
+@keyframes neonGlow {
+    0% {
+        box-shadow: 0 0 6px rgba(0, 255, 200, 0.25);
+    }
+
+    50% {
+        box-shadow: 0 0 16px rgba(0, 255, 200, 0.45);
+    }
+
+    100% {
+        box-shadow: 0 0 6px rgba(0, 255, 200, 0.25);
+    }
+}
+
+/* Border Shine Animation */
+@keyframes borderSweep {
+    0% {
+        opacity: 0.05;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.05;
+    }
+}
+
+/* Pulse for totals */
+@keyframes softPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.015);
+        opacity: 0.95;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==========================================================
+   TOP BALANCE CARDS — animated neon frames
+   ========================================================== */
+.cash-page .balance-card {
+    position: relative;
+    overflow: hidden;
+    animation: neonGlow 5s infinite ease-in-out;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cash-page .balance-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px rgba(0, 255, 200, 0.5);
+}
+
+.cash-page .balance-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 1.5px solid rgba(0, 255, 200, 0.4);
+    animation: borderSweep 6s infinite linear;
+    pointer-events: none;
+}
+
+/* Stronger glow for TOTAL */
+.cash-page .balance-card.total {
+    animation: neonGlow 4s infinite ease-in-out;
+}
+
+.cash-page .balance-card.total::after {
+    border-color: rgba(0, 255, 150, 0.75);
+}
+
+/* ==========================================================
+   KPI CARDS — animated neon theme (blue/orange)
+   ========================================================== */
+.cash-page .kpi {
+    position: relative;
+    overflow: hidden;
+    animation: neonGlow 7s infinite ease-in-out;
+}
+
+.cash-page .kpi.primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 1.4px solid rgba(0, 255, 150, 0.35);
+    animation: borderSweep 8s infinite ease-in-out;
+    pointer-events: none;
+}
+
+.cash-page .kpi.warn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 1.4px solid rgba(255, 170, 70, 0.35);
+    animation: borderSweep 8s infinite ease-in-out;
+    pointer-events: none;
+}
+
+/* KPI hover effect */
+.cash-page .kpi:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 255, 180, 0.2);
+}
+
+/* ==========================================================
+   TRANSACTION LIST ROWS — neon rows
+   ========================================================== */
+.cash-page .cash-list .cash-row {
+    position: relative;
+    animation: neonGlow 6s infinite ease-in-out;
+    backdrop-filter: blur(5px);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.cash-page .cash-list .cash-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 22px rgba(0, 255, 200, 0.35);
+}
+
+/* Row border glow edge */
+.cash-page .cash-list .cash-row::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 180, 0.20);
+    animation: borderSweep 7s infinite ease-in-out;
+    pointer-events: none;
+}
+
+/* ==========================================================
+   GRAND TOTAL — animated premium glow
+   ========================================================== */
+.cash-page .grand-total {
+    animation: softPulse 6s infinite ease-in-out, neonGlow 8s infinite ease-in-out;
+    position: relative;
+}
+
+.cash-page .grand-total::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 1.8px solid rgba(0, 255, 160, 0.38);
+    animation: borderSweep 10s infinite ease-in-out;
+    pointer-events: none;
+}
+
+/* ==========================================================
+   TWICKS CASH — RGB PULSE NEON MODE (PHASE 2)
+   ========================================================== */
+
+/* RGB Gradient Animation */
+@keyframes rgbFlow {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        filter: hue-rotate(180deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* RGB Border Light Sweep */
+@keyframes rgbBorderSweep {
+    0% {
+        opacity: 0.08;
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        opacity: 0.4;
+        filter: hue-rotate(180deg);
+    }
+
+    100% {
+        opacity: 0.08;
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* RGB Hover Pulse */
+@keyframes rgbHover {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+    }
+
+    50% {
+        transform: translateY(-4px);
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.45);
+    }
+
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* ==========================================================
+   TOP BALANCE CARDS — RGB animated borders
+   ========================================================== */
+.cash-page .balance-card {
+    position: relative;
+    overflow: hidden;
+    animation: rgbFlow 10s infinite linear;
+    transition: transform 0.26s ease, box-shadow 0.26s ease;
+}
+
+.cash-page .balance-card:hover {
+    animation: rgbHover 0.8s ease forwards;
+}
+
+.cash-page .balance-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg,
+            #ff0080,
+            #00eaff,
+            #7aff00,
+            #ffae00,
+            #ff0080);
+    background-size: 400% 400%;
+    animation: rgbBorderSweep 8s infinite linear;
+    -webkit-mask: linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+}
+
+/* Stronger RGB for TOTAL */
+.cash-page .balance-card.total::after {
+    opacity: 0.55;
+}
+
+/* ==========================================================
+   KPI CARDS — RGB glow + sweep
+   ========================================================== */
+.cash-page .kpi {
+    position: relative;
+    overflow: hidden;
+    animation: rgbFlow 12s infinite linear;
+}
+
+.cash-page .kpi::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg,
+            #ff0080,
+            #00d0ff,
+            #7aff00,
+            #ffae00,
+            #ff0080);
+    background-size: 400% 400%;
+    animation: rgbBorderSweep 10s infinite linear;
+    -webkit-mask: linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+}
+
+/* Custom glow when hovered */
+.cash-page .kpi:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 26px rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================
+   TRANSACTION ROWS — RGB glow + hover lift
+   ========================================================== */
+.cash-page .cash-list .cash-row {
+    position: relative;
+    backdrop-filter: blur(6px);
+    animation: rgbFlow 15s infinite linear;
+    transition: 0.2s ease;
+}
+
+.cash-page .cash-list .cash-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 22px rgba(255, 255, 255, 0.4);
+}
+
+.cash-page .cash-list .cash-row::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg,
+            #ff0080,
+            #00bfff,
+            #7aff00,
+            #ffae00,
+            #ff0080);
+    background-size: 500% 500%;
+    animation: rgbBorderSweep 9s infinite linear;
+    -webkit-mask: linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+}
+
+/* ==========================================================
+   GRAND TOTAL — premium RGB pulse
+   ========================================================== */
+.cash-page .grand-total {
+    position: relative;
+    animation: rgbFlow 12s infinite linear, softPulse 5s infinite ease-in-out;
+}
+
+.cash-page .grand-total::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg,
+            #ff00d4,
+            #00eaff,
+            #7cff00,
+            #ffb700,
+            #ff00d4);
+    background-size: 600% 600%;
+    animation: rgbBorderSweep 7s infinite cubic-bezier(0.3, 0, 0.7, 1);
+    -webkit-mask: linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+}
+
+/* Extra highlight on hover */
+.cash-page .grand-total:hover {
+    box-shadow: 0 0 32px rgba(255, 255, 255, 0.35);
+}
