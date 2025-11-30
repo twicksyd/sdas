@@ -12,15 +12,13 @@
 
 <body>
 
-    <!-- Single correct nav bar -->
+    <!-- SINGLE NAV (do not duplicate) -->
     <nav class="site-nav" role="navigation" aria-label="Primary">
         <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
         <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
         <a href="sold.html" class="site-link" data-page="sold">Sold</a>
-        <a href="cash.html" class="site-link active" data-page="cash">Cash</a>
+        <a href="cash.html" class="site-link" data-page="cash">Cash</a>
     </nav>
-
-    <!-- NO FAB BUTTON on cash page -->
 
     <main class="app cash-page">
 
@@ -54,21 +52,23 @@
                     </div>
                 </div>
 
-                <div class="addline" style="margin-top:12px;">
+                <!-- Add / Deduct row -->
+                <div class="addline">
                     <select id="c_source"></select>
-                    <input id="c_amount" type="number" step="0.01" placeholder="Amount ₱" />
+                    <input id="c_amount" type="number" placeholder="Amount ₱" step="0.01" inputmode="decimal" />
                     <input id="c_note" type="text" placeholder="Note (optional)" />
-                    <button id="addCashBtn" class="btn primary" type="button">Add</button>
-                    <button id="deductCashBtn" class="btn secondary" type="button">Deduct</button>
+                    <button id="addCashBtn" class="btn primary">Add</button>
+                    <button id="deductCashBtn" class="btn secondary">Deduct</button>
                 </div>
 
-                <div id="cashList" class="cash-list" style="margin-top:12px;"></div>
+                <div id="cashList" class="cash-list"></div>
 
-                <div class="grand-total cash-panel" style="margin-top:12px;">
+                <div class="grand-total cash-panel">
                     <div class="title">Grand Total</div>
                     <div id="grandTotalCash" class="grand-value">₱0.00</div>
-                    <div id="grandBreakdown" class="grand-meta">On-hand ₱0.00 + Paid revenue ₱0.00</div>
+                    <div id="grandBreakdown" class="grand-meta"></div>
                 </div>
+
             </div>
 
             <div class="cash-right">
@@ -77,21 +77,23 @@
                     <div id="revPaidValue" class="kpi-value">₱0.00</div>
                     <div class="kpi-sub"><span id="revPaidCount">0</span> item(s) paid</div>
                 </div>
+
                 <div class="kpi warn">
                     <div class="kpi-title">Revenue (Pending)</div>
-                    <div id="revPendValue" class="kpi-value small">₱0.00</div>
+                    <div id="revPendValue" class="kpi-value">₱0.00</div>
                     <div class="kpi-sub"><span id="revPendCount">0</span> item(s) pending</div>
                 </div>
+
                 <div class="kpi">
                     <div class="kpi-title">Calculated Pending Value</div>
-                    <div id="revAllValue" class="kpi-value small">₱0.00</div>
+                    <div id="revAllValue" class="kpi-value">₱0.00</div>
                     <div class="kpi-sub">For reference only</div>
                 </div>
             </div>
 
         </section>
 
-        <!-- shared modal used globally -->
+        <!-- SINGLE shared modal -->
         <div id="imageModal" class="image-modal" aria-hidden="true">
             <div class="image-modal-bg" id="imageModalBgCash"></div>
             <div class="image-modal-content">
@@ -104,6 +106,7 @@
     </main>
 
     <script src="twicks.js" defer></script>
+
 </body>
 
 </html>
