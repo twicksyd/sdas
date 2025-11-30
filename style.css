@@ -1194,7 +1194,7 @@ body[data-page="cash"] .grand-total {
    CASH PAGE — FULL DESKTOP RESTORE
 ===================================== */
 
-body[data-page="cash"] .app {
+<body data-page="cash">.app {
     max-width: 1350px;
     margin: 0 auto;
     padding: 40px 40px 120px;
