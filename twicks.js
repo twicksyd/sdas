@@ -749,6 +749,55 @@ const TWX = (() => {
     document.addEventListener("DOMContentLoaded", () => {
         AutoBackup.start();
     });
+    // ============================
+    // SHIPPING MESSAGE GENERATOR
+    // ============================
+
+    if (document.body.dataset.page === "sold") {
+
+        document.addEventListener("click", async (e) => {
+            const btn = e.target.closest(".ship-msg-btn");
+            if (!btn) return;
+
+            const buyer = btn.dataset.buyer;
+            const modal = document.getElementById("shipMsgModal");
+
+            document.getElementById("shipMsgBuyer").textContent = "Buyer: " + buyer;
+            document.getElementById("shipTrackingInput").value = "";
+            modal.classList.add("show");
+        });
+
+        // Close modal
+        document.getElementById("closeShipMsg").addEventListener("click", () => {
+            document.getElementById("shipMsgModal").classList.remove("show");
+        });
+
+        document.getElementById("shipMsgBg").addEventListener("click", () => {
+            document.getElementById("shipMsgModal").classList.remove("show");
+        });
+
+        // Copy message
+        document.getElementById("copyShipMsg").addEventListener("click", async () => {
+            const tn = document.getElementById("shipTrackingInput").value.trim();
+
+            const hour = new Date().getHours();
+            const greet =
+                hour < 12 ? "Good morning" :
+                    hour < 18 ? "Good afternoon" :
+                        "Good evening";
+
+            const msg = `${greet} brother! Napaship ko na po. TN mo brother: ${tn}`;
+
+            await navigator.clipboard.writeText(msg);
+
+            document.getElementById("copyShipMsg").textContent = "Copied!";
+            setTimeout(() => {
+                document.getElementById("copyShipMsg").textContent = "Copy Message";
+            }, 1600);
+        });
+
+    }
+
 
     // Hook into Storage.save so any change to data marks it as dirty
     (function patchStorageSaveForAutoBackup() {
@@ -1958,19 +2007,24 @@ const TWX = (() => {
 
                 const actions = document.createElement("div");
                 actions.className = "buyer-actions-right";
+
                 actions.innerHTML = !allPaid
                     ? `
-              <button class="btn primary total-invoice">Total Invoice</button>
-              <button class="btn secondary follow-up">Followup invoice</button>
-              <button class="btn secondary nonimg-followup">non followup</button>
-              ${showMarkAllPaid ? `<button class="btn btn-rgb mark-all-paid">Mark all as paid</button>` : ``}
-              <button class="btn secondary set-sf">Set Shipping Fee</button>
-            `
+        <button class="btn primary total-invoice">Total Invoice</button>
+        <button class="btn secondary follow-up">Followup invoice</button>
+        <button class="btn secondary nonimg-followup">non followup</button>
+        ${showMarkAllPaid ? `<button class="btn btn-rgb mark-all-paid">Mark all as paid</button>` : ``}
+        <button class="btn secondary set-sf">Set Shipping Fee</button>
+        <button class="btn secondary ship-msg-btn" data-buyer="${buyer}">Shipping Msg</button>
+    `
                     : `
-              <button class="btn primary thanks-invoice">Thanks invoice</button>
-              <button class="btn secondary add-to-cash">Add to Cash</button>
-              <button class="btn secondary set-sf">Set Shipping Fee</button>
-            `;
+        <button class="btn primary thanks-invoice">Thanks invoice</button>
+        <button class="btn secondary add-to-cash">Add to Cash</button>
+        <button class="btn secondary set-sf">Set Shipping Fee</button>
+        <button class="btn secondary ship-msg-btn" data-buyer="${buyer}">Shipping Msg</button>
+    `;
+
+
 
                 content.appendChild(cardsWrap);
                 content.appendChild(actions);
