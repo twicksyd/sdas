@@ -753,51 +753,46 @@ const TWX = (() => {
     // SHIPPING MESSAGE GENERATOR
     // ============================
 
-    if (document.body.dataset.page === "sold") {
+    document.addEventListener("click", async (e) => {
+        const btn = e.target.closest(".ship-msg-btn");
+        if (!btn) return;
 
-        document.addEventListener("click", async (e) => {
-            const btn = e.target.closest(".ship-msg-btn");
-            if (!btn) return;
+        const buyer = btn.dataset.buyer;
+        const modal = document.getElementById("shipMsgModal");
 
-            const buyer = btn.dataset.buyer;
-            const modal = document.getElementById("shipMsgModal");
+        document.getElementById("shipMsgBuyer").textContent = "Buyer: " + buyer;
+        document.getElementById("shipTrackingInput").value = "";
+        modal.classList.add("show");
+    });
 
-            document.getElementById("shipMsgBuyer").textContent = "Buyer: " + buyer;
-            document.getElementById("shipTrackingInput").value = "";
-            modal.classList.add("show");
-        });
+    // Close modal
+    document.getElementById("closeShipMsg").addEventListener("click", () => {
+        document.getElementById("shipMsgModal").classList.remove("show");
+    });
+    document.getElementById("shipMsgBg").addEventListener("click", () => {
+        document.getElementById("shipMsgModal").classList.remove("show");
+    });
 
-        // Close modal
-        document.getElementById("closeShipMsg").addEventListener("click", () => {
-            document.getElementById("shipMsgModal").classList.remove("show");
-        });
+    // Copy message
+    document.getElementById("copyShipMsg").addEventListener("click", async () => {
+        const tn = document.getElementById("shipTrackingInput").value.trim();
+        const buyerText = document.getElementById("shipMsgBuyer").textContent.replace("Buyer: ", "");
 
-        document.getElementById("shipMsgBg").addEventListener("click", () => {
-            document.getElementById("shipMsgModal").classList.remove("show");
-        });
+        const hour = new Date().getHours();
+        const greet =
+            hour < 12 ? "Good morning" :
+                hour < 18 ? "Good afternoon" :
+                    "Good evening";
 
-        // Copy message
-        document.getElementById("copyShipMsg").addEventListener("click", async () => {
-            const tn = document.getElementById("shipTrackingInput").value.trim();
+        const msg = `${greet} brother! Napaship ko na po. TN mo brother: ${tn}`;
 
-            const hour = new Date().getHours();
-            const greet =
-                hour < 12 ? "Good morning" :
-                    hour < 18 ? "Good afternoon" :
-                        "Good evening";
+        await navigator.clipboard.writeText(msg);
 
-            const msg = `${greet} brother! Napaship ko na po. TN mo brother: ${tn}`;
-
-            await navigator.clipboard.writeText(msg);
-
-            document.getElementById("copyShipMsg").textContent = "Copied!";
-            setTimeout(() => {
-                document.getElementById("copyShipMsg").textContent = "Copy Message";
-            }, 1600);
-        });
-
-    }
-
+        document.getElementById("copyShipMsg").textContent = "Copied!";
+        setTimeout(() => {
+            document.getElementById("copyShipMsg").textContent = "Copy Message";
+        }, 1600);
+    });
 
     // Hook into Storage.save so any change to data marks it as dirty
     (function patchStorageSaveForAutoBackup() {
