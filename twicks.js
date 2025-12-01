@@ -831,9 +831,8 @@ const TWX = (() => {
        CLOUD BACKUP (Neon + Netlify)
     ========================================= */
 
-    const CLOUD_BACKUP_URL = "https://twicks-storage.netlify.app/.netlify/functions/twicks-backup";
+    const CLOUD_BACKUP_URL = "https://twicks-storage-5okl.vercel.app/api/backup";
 
-    // Save all localStorage data to Neon
     async function backupToCloud() {
         try {
             const payload = {
