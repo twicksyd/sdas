@@ -753,46 +753,56 @@ const TWX = (() => {
     // SHIPPING MESSAGE GENERATOR
     // ============================
 
-    document.addEventListener("click", async (e) => {
-        const btn = e.target.closest(".ship-msg-btn");
-        if (!btn) return;
-
-        const buyer = btn.dataset.buyer;
+    (function initShippingMsg() {
+        // Only run on the page that actually has the modal
         const modal = document.getElementById("shipMsgModal");
+        const closeBtn = document.getElementById("closeShipMsg");
+        const bg = document.getElementById("shipMsgBg");
+        const copyBtn = document.getElementById("copyShipMsg");
+        const buyerLabel = document.getElementById("shipMsgBuyer");
+        const tnInput = document.getElementById("shipTrackingInput");
 
-        document.getElementById("shipMsgBuyer").textContent = "Buyer: " + buyer;
-        document.getElementById("shipTrackingInput").value = "";
-        modal.classList.add("show");
-    });
+        // If any of these are missing, we’re not on sold.html → bail out safely
+        if (!modal || !closeBtn || !bg || !copyBtn || !buyerLabel || !tnInput) return;
 
-    // Close modal
-    document.getElementById("closeShipMsg").addEventListener("click", () => {
-        document.getElementById("shipMsgModal").classList.remove("show");
-    });
-    document.getElementById("shipMsgBg").addEventListener("click", () => {
-        document.getElementById("shipMsgModal").classList.remove("show");
-    });
+        // Open modal when clicking any "Shipping Msg" button
+        document.addEventListener("click", (e) => {
+            const btn = e.target.closest(".ship-msg-btn");
+            if (!btn) return;
 
-    // Copy message
-    document.getElementById("copyShipMsg").addEventListener("click", async () => {
-        const tn = document.getElementById("shipTrackingInput").value.trim();
-        const buyerText = document.getElementById("shipMsgBuyer").textContent.replace("Buyer: ", "");
+            const buyer = btn.dataset.buyer || "";
+            buyerLabel.textContent = "Buyer: " + buyer;
+            tnInput.value = "";
+            modal.classList.add("show");
+        });
 
-        const hour = new Date().getHours();
-        const greet =
-            hour < 12 ? "Good morning" :
-                hour < 18 ? "Good afternoon" :
-                    "Good evening";
+        // Close modal
+        const hide = () => modal.classList.remove("show");
+        closeBtn.addEventListener("click", hide);
+        bg.addEventListener("click", hide);
 
-        const msg = `${greet} brother! Napaship ko na po. TN mo brother: ${tn}`;
+        // Copy message
+        copyBtn.addEventListener("click", async () => {
+            const tn = tnInput.value.trim();
 
-        await navigator.clipboard.writeText(msg);
+            const hour = new Date().getHours();
+            const greet =
+                hour < 12 ? "Good morning" :
+                    hour < 18 ? "Good afternoon" :
+                        "Good evening";
 
-        document.getElementById("copyShipMsg").textContent = "Copied!";
-        setTimeout(() => {
-            document.getElementById("copyShipMsg").textContent = "Copy Message";
-        }, 1600);
-    });
+            const msg = `${greet} brother! Napaship ko na po.\n\nTN mo brother: ${tn}\n\nSalamat brother! God bless!`;
+
+
+            await navigator.clipboard.writeText(msg);
+
+            copyBtn.textContent = "Copied!";
+            setTimeout(() => {
+                copyBtn.textContent = "Copy Message";
+            }, 1600);
+        });
+    })();
+
 
     // Hook into Storage.save so any change to data marks it as dirty
     (function patchStorageSaveForAutoBackup() {
