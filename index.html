@@ -18,6 +18,7 @@
         <a href="index.html" class="site-link" data-page="inventory">Inventory</a>
         <a href="forsale.html" class="site-link" data-page="forsale">For Sale</a>
         <a href="sold.html" class="site-link" data-page="sold">Sold</a>
+        <a href="cash.html" class="site-link" data-page="cash">Cash</a>
     </nav>
 
     <!-- Center RGB Cash button -->
@@ -67,13 +68,23 @@
         <!-- 🧾 Add New Card Row -->
         <section class="add-area">
             <!-- Seller dropdown -->
+            <label for="b_seller_select" class="input-label">Seller</label>
             <select id="b_seller_select" class="seller-select" aria-label="Select seller"></select>
 
             <!-- Inputs -->
+            <label for="b_buy" class="input-label">Buy Price ₱</label>
             <input id="b_buy" type="number" step="0.01" placeholder="Buy ₱" inputmode="decimal" />
+            
+            <label for="b_ship" class="input-label">Ship-in ₱</label>
             <!-- NOTE: Ship-in field is auto-injected by JS as #b_ship; no HTML change needed -->
+            
+            <label for="b_sf" class="input-label">Shipping Fee ₱</label>
             <input id="b_sf" type="number" step="0.01" placeholder="Shipping Fee ₱" inputmode="decimal" />
+            
+            <label for="b_sell" class="input-label">Est Sell ₱</label>
             <input id="b_sell" type="number" step="0.01" placeholder="Est sell ₱" inputmode="decimal" />
+            
+            <label for="b_image" class="input-label">Image</label>
             <input id="b_image" type="file" accept="image/*,.heic,.heif" />
 
             <button id="addBoughtBtn" class="btn primary" type="button">Add Bought Card</button>
