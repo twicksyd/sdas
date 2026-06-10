@@ -477,56 +477,115 @@ body {
    BUTTONS
 ============================ */
 .btn {
-    padding: 10px 18px;
-    border-radius: 8px;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
     font-weight: 600;
     font-size: 14px;
     border: none;
     cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: none;
     letter-spacing: 0.3px;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn:active {
-    transform: translateY(0);
+    transform: translateY(1px);
 }
 
 .btn.primary {
-    background: var(--neonGradient);
-    color: #041018;
+    background: var(--accent1);
+    color: #ffffff;
     font-weight: 700;
 }
 
 .btn.primary:hover {
-    box-shadow: 0 8px 30px rgba(0, 119, 255, 0.4);
+    background: var(--accent-hover);
 }
 
 .btn.secondary {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--surface-2);
     color: var(--text-primary);
     border: 1px solid var(--border);
 }
 
 .btn.secondary:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--border-strong);
+    filter: brightness(1.15);
 }
 
-.btn.reset-btn {
-    background: rgba(255, 45, 45, 0.1);
-    color: #ff6b6b;
-    border: 1px solid rgba(255, 45, 45, 0.2);
+.btn.ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
 }
 
-.btn.reset-btn:hover {
-    background: rgba(255, 45, 45, 0.15);
-    border-color: rgba(255, 45, 45, 0.3);
+.btn.ghost:hover {
+    background: var(--surface-2);
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+}
+
+.btn.reset-btn,
+.btn.danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.btn.reset-btn:hover,
+.btn.danger:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: var(--danger);
+}
+
+.btn.success,
+.btn.btn-rgb {
+    background: var(--success);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.btn.success:hover,
+.btn.btn-rgb:hover {
+    filter: brightness(1.1);
+}
+
+/* ============================
+   SURFACES
+============================ */
+.surface {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.surface-2 {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.field {
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.field::placeholder {
+    color: var(--text-muted);
+}
+
+.field:focus {
+    outline: none;
+    border-color: var(--accent1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 /* ============================
@@ -535,12 +594,12 @@ body {
 .add-area {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: var(--space-3);
     align-items: center;
-    margin-bottom: 28px;
-    padding: 16px 20px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    border-radius: 12px;
+    margin-bottom: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    background: var(--panel);
+    border-radius: var(--radius-lg);
     border: 1px solid var(--border);
 }
 
@@ -548,14 +607,14 @@ body {
 .add-area input[type="file"],
 .add-area input[type="text"],
 .add-area select {
-    padding: 10px 14px;
-    border-radius: 8px;
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
     border: 1px solid var(--border);
-    background: #0d0d0e;
+    background: var(--surface-2);
     color: var(--text-primary);
     min-width: 160px;
     font-size: 14px;
-    transition: all 0.2s ease;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .add-area input[type="number"]:focus,
@@ -563,51 +622,12 @@ body {
 .add-area select:focus {
     outline: none;
     border-color: var(--accent1);
-    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .add-area input[type="number"]::placeholder,
 .add-area input[type="text"]::placeholder {
     color: var(--text-muted);
-}
-
-/* ============================
-   BUTTONS
-============================ */
-.btn {
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    font-weight: 700;
-}
-
-.btn.primary {
-    background: linear-gradient(90deg, var(--accent1), #ff2d2d);
-    color: #00121a;
-    box-shadow: 0 10px 30px rgba(0, 119, 255, 0.06);
-}
-
-.btn.secondary {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e9f7f2;
-    transition: transform .15s ease, box-shadow .15s ease;
-}
-
-.btn.secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.btn.btn-rgb {
-    background: var(--neonGradient);
-    color: #041018;
-    font-weight: 700;
-}
-
-.btn.btn-rgb:hover {
-    box-shadow: 0 8px 30px rgba(0, 119, 255, 0.4);
 }
 
 .small-btn {
