@@ -144,14 +144,19 @@ const TWX = (() => {
         }
         async function idbSet(key, val) {
             const db = await ensureDB();
-            if (!db) return;
-            await new Promise((resolve, reject) => {
-                const tx = db.transaction(DB.STORE, "readwrite");
-                const st = tx.objectStore(DB.STORE);
-                st.put(val, key);
-                tx.oncomplete = resolve;
-                tx.onerror = () => reject(tx.error);
-            });
+            if (!db) return false;
+            try {
+                await new Promise((resolve, reject) => {
+                    const tx = db.transaction(DB.STORE, "readwrite");
+                    const st = tx.objectStore(DB.STORE);
+                    st.put(val, key);
+                    tx.oncomplete = resolve;
+                    tx.onerror = () => reject(tx.error);
+                });
+                return true;
+            } catch {
+                return false;
+            }
         }
 
         return {
@@ -162,7 +167,9 @@ const TWX = (() => {
                         try {
                             const parsed = JSON.parse(raw);
                             return parsed ?? fallback;
-                        } catch {
+                        } catch (e) {
+                            console.error(`[Storage] Corrupted data for "${key}" — backing up raw value`, e);
+                            try { localStorage.setItem(key + "_corrupt_" + Date.now(), raw); } catch { }
                             return fallback;
                         }
                     }
@@ -174,8 +181,13 @@ const TWX = (() => {
                 try {
                     localStorage.setItem(key, JSON.stringify(val ?? []));
                     return;
-                } catch { }
-                await idbSet(key, val ?? []);
+                } catch (e) {
+                    console.warn(`[Storage] localStorage save failed for "${key}", trying IndexedDB`, e);
+                }
+                const ok = await idbSet(key, val ?? []);
+                if (!ok) {
+                    alert("⚠️ Could not save your changes — storage is full or unavailable. Please free up space or back up your data.");
+                }
             },
             localGet(key) {
                 try {
@@ -628,8 +640,8 @@ const TWX = (() => {
 
         // Create or update a single JSON file in Drive
         async function driveUpsertJsonRolling(filename, jsonObj) {
-            // If not signed in, just skip silently
-            if (!Drive.isSignedIn || !Drive.isSignedIn()) return;
+            // If not signed in, report failure instead of a silent "success"
+            if (!Drive.isSignedIn || !Drive.isSignedIn()) return false;
 
             const token = await Drive.ensureSignedIn(false);
             const metadata = { name: filename, mimeType: "application/json" };
@@ -678,7 +690,8 @@ const TWX = (() => {
             if (!res.ok) {
                 throw new Error("Drive upsert failed: " + (await res.text()));
             }
-            return res.json();
+            await res.json();
+            return true;
         }
 
         async function performBackup(reason = "interval") {
@@ -693,7 +706,11 @@ const TWX = (() => {
 
                 if (!dirty && sameSnapshot(serialized, lastSerialized)) return;
 
-                await driveUpsertJsonRolling(AUTO_BACKUP_FILENAME, payload);
+                const ok = await driveUpsertJsonRolling(AUTO_BACKUP_FILENAME, payload);
+                if (!ok) {
+                    console.warn(`[Twicks AutoBackup] Skipped (${reason}): not signed in to Drive`);
+                    return;
+                }
                 lastSerialized = serialized;
                 dirty = false;
                 console.log(`[Twicks AutoBackup] ✅ Saved (${reason})`);
@@ -1466,9 +1483,11 @@ const TWX = (() => {
                         )
                     )
                         return;
-                    let reassignTo = prompt(
+                    const reassignInput = prompt(
                         "Type a seller name to reassign items to (leave blank to clear):"
-                    )?.trim();
+                    );
+                    if (reassignInput === null) return; // user cancelled — abort delete entirely
+                    let reassignTo = reassignInput.trim();
                     if (reassignTo) {
                         sellersSet.add(reassignTo);
                     }

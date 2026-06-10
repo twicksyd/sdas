@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Twicks — For Sale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
@@ -56,7 +56,9 @@
 
         <!-- Add new listing -->
         <section class="add-area">
+            <label for="f_price" class="sr-only">Price ₱</label>
             <input id="f_price" type="number" step="0.01" placeholder="Price ₱" inputmode="decimal" />
+            <label for="f_image" class="sr-only">Card image</label>
             <input id="f_image" type="file" accept="image/*" />
             <button id="addForSaleBtn" type="button" class="btn primary">Add Listing</button>
         </section>
